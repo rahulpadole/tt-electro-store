@@ -1,0 +1,155 @@
+You are a Senior Full Stack PHP Developer and Software Engineer.
+
+I have already built my e-commerce website using Replit AI. The project structure and most of the functionality are already completed.
+
+Your task is NOT to redesign or rewrite the project from scratch.
+
+Your responsibility is to thoroughly inspect the entire codebase and fix every issue until the website works perfectly.
+
+Requirements:
+
+1. Analyze the complete project structure.
+2. Check every frontend and backend functionality.
+3. Identify all bugs and broken features.
+4. Fix all errors without breaking existing working functionality.
+5. Maintain the current UI design and project architecture.
+6. Do not remove any feature unless absolutely necessary.
+7. Ensure responsive design remains intact.
+8. Optimize code where required without changing behavior.
+9. Remove unnecessary duplicate code and dead code.
+10. Follow clean coding standards.
+
+You must test and verify the following modules:
+
+### Authentication
+- User Registration
+- Login
+- Logout
+- Session handling
+- Google Login
+- Password hashing
+- Invalid login handling
+- Remember login (if implemented)
+
+### User Account
+- Profile update
+- Change password
+- Address management
+- Order history
+
+### Products
+- Product listing
+- Product details
+- Category filtering
+- Search
+- Sorting
+- Pagination
+
+### Cart
+- Add to cart
+- Remove item
+- Update quantity
+- Cart total calculation
+- Session/database synchronization
+
+### Wishlist
+- Add
+- Remove
+- Move to cart
+
+### Checkout
+- Shipping address
+- Order summary
+- Coupon application
+- Total calculation
+- Order placement
+
+### Payment
+- Verify payment gateway integration
+- Payment success callback
+- Payment failure handling
+- Prevent duplicate orders
+
+### Orders
+- Create order
+- Order status
+- Cancel order
+- Invoice generation (if available)
+
+### Admin Panel
+- Admin login
+- Dashboard
+- Product CRUD
+- Category CRUD
+- Order management
+- User management
+
+### Database
+- Check all SQL queries
+- Foreign keys
+- Duplicate entries
+- Transactions
+- Data validation
+- Error handling
+
+### API
+- Verify every API endpoint
+- Proper JSON responses
+- Correct HTTP status codes
+- Validation
+- Authentication
+
+### Security
+- SQL Injection protection
+- XSS protection
+- CSRF protection
+- Session security
+- Input validation
+- Output escaping
+
+### Performance
+- Optimize slow queries
+- Lazy loading where applicable
+- Reduce unnecessary API calls
+- Minimize duplicate requests
+
+### Error Handling
+- Check browser console
+- Check PHP logs
+- Check network requests
+- Fix HTTP 500 errors
+- Fix JavaScript errors
+- Fix undefined variables
+- Fix null reference errors
+
+### Mobile Compatibility
+- Test all pages on mobile
+- Fix responsive issues
+- Ensure menus and forms work properly
+
+### Final Verification
+
+After fixing everything:
+
+- Test every page manually.
+- Test every button.
+- Test every form.
+- Test every API.
+- Test every navigation link.
+- Test every CRUD operation.
+- Test complete order flow.
+
+Do not stop after fixing one issue.
+
+Continue debugging until the entire website functions correctly without runtime errors.
+
+At the end, provide:
+
+1. List of all bugs found.
+2. List of fixes applied.
+3. Files modified.
+4. Reason for each modification.
+5. Any remaining issues (if any).
+6. Suggestions for future improvements.
+
+Work like a senior software engineer performing a production-level QA and debugging pass.

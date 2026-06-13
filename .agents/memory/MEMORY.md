@@ -1,0 +1,9 @@
+- [Design system](design-system.md) — full light/dark color system, component classes, Alpine patterns for TT Electro Store
+- [MySQL Migration Pattern](mysql-migration.md) — MySQL 8.0 doesn't support ADD COLUMN IF NOT EXISTS (MariaDB only); use PHP migration script with INFORMATION_SCHEMA checks instead.
+- [API Response Shape](api-response-shape.md) — All APIs use jsonSuccess(data) wrapping response in {success,data,message}; Alpine components must use r.data not r.orders/r.wishlist directly.
+- [Auth + OTP Architecture](auth-otp-arch.md) — OTP in otp_verifications table (10min expiry, 5-attempt max, 30s cooldown); session flag otp_verified_phone used to confirm phone during registration before account creation.
+- [Stack & Conventions](stack-conventions.md) — PHP 8.2, MySQL 8.0 socket /tmp/mysql.sock, DB tt_electro_store. renderAuth() for standalone pages. apiFetch/showToast defined in footer.php. Models autoloaded via glob('./models/*.php').
+- [Router file_exists bug](router-fileexists-bug.md) — router.php must use is_file() not file_exists(); file_exists returns true for directories, causing PHP built-in server to bypass index.php/bootstrap for all /api/* routes.
+- [Order + Stock Integrity](order-stock-integrity.md) — OrderModel::create() wraps everything in a DB transaction with FOR UPDATE stock check + decrement; throws RuntimeException on insufficient stock caught by api/orders/index.php.
+- [Shipping Constants](shipping-constants.md) — FREE_SHIPPING_ABOVE=499 and SHIPPING_CHARGE=49 defined in config/config.php; views must use these constants, not hardcoded values.
+- [Route Auth Guards](route-auth-guards.md) — /checkout and /wishlist require auth=true in routes array; OTP validation requires strlen===6 + ctype_digit, not strlen<4.

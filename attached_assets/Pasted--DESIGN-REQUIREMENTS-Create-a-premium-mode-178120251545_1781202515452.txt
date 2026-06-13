@@ -1,0 +1,751 @@
+====================================================
+
+DESIGN REQUIREMENTS
+
+Create a premium modern UI inspired by:
+
+Apple
+
+Amazon
+
+Reliance Digital
+
+Use:
+
+Rounded cards
+
+Soft shadows
+
+Modern typography
+
+Minimal design
+
+Smooth animations
+
+Responsive layouts
+
+Micro interactions
+
+Glass effects where appropriate
+
+Sticky navigation
+
+Loading skeletons
+
+Page transitions
+
+Hover effects
+
+Professional spacing
+
+====================================================
+
+COLOR PALETTE
+
+Primary Blue/ green
+
+Secondary Dark Navy
+
+Accent Cyan
+
+White Cards
+
+Light Background
+
+Professional Gradient Hero
+
+====================================================
+
+HOME PAGE
+
+Design a beautiful landing page including:
+
+Hero Slider
+
+Categories
+
+Featured Products
+
+Trending Products
+
+Best Sellers
+
+Flash Sale
+
+Offer Banner
+
+Brands
+
+DIY Vision Kit Section
+
+3D Printing Section
+
+Latest Blogs
+
+Testimonials
+
+Newsletter
+
+FAQ
+
+Footer
+
+Floating WhatsApp
+
+Back To Top
+
+Sticky Header
+
+Search Bar
+
+Mega Menu
+
+====================================================
+
+NAVIGATION
+
+Logo
+
+Home
+
+Products
+
+Categories
+
+DIY Vision Kit
+
+3D Printing
+
+Offers
+
+Blogs
+
+Track Order
+
+About
+
+Contact
+
+Wishlist
+
+Compare
+
+Cart
+
+Profile
+
+====================================================
+
+PRODUCT MODULE
+
+Category Filter
+
+Subcategory Filter
+
+Brand Filter
+
+Price Filter
+
+Rating Filter
+
+Availability
+
+Sorting
+
+Grid View
+
+List View
+
+Infinite Scroll
+
+Pagination
+
+Quick View
+
+Wishlist
+
+Compare
+
+Add To Cart
+
+Share Product
+
+====================================================
+
+PRODUCT DETAILS
+
+Gallery
+
+Zoom
+
+Description
+
+Specifications
+
+Reviews
+
+Ratings
+
+Related Products
+
+Recently Viewed
+
+Add To Cart
+
+Buy Now
+
+Wishlist
+
+Compare
+
+Delivery Estimate
+
+Share Button
+
+====================================================
+
+CART
+
+Update Quantity
+
+Delete Item
+
+Save For Later
+
+Coupon
+
+Shipping Cost
+
+Tax
+
+Subtotal
+
+Grand Total
+
+====================================================
+
+CHECKOUT
+
+Address
+
+Multiple Address
+
+Shipping Method
+
+Payment Method
+
+Order Summary
+
+GST
+
+Invoice
+
+Order Notes
+
+Confirmation
+
+====================================================
+
+AUTHENTICATION
+
+Register
+
+Login
+
+Forgot Password
+
+Reset Password
+
+Email Verification
+
+OTP Verification
+
+JWT Authentication
+
+====================================================
+
+USER DASHBOARD
+
+Dashboard
+
+Orders
+
+Wishlist
+
+Profile
+
+Addresses
+
+Notifications
+
+Downloads
+
+Invoices
+
+Track Orders
+
+Settings
+
+====================================================
+
+ADMIN PANEL
+
+Dashboard
+
+Analytics
+
+Products
+
+Categories
+
+Brands
+
+Customers
+
+Orders
+
+Coupons
+
+Offers
+
+Blogs
+
+Notifications
+
+Reviews
+
+Homepage Sections
+
+Banners
+
+SEO
+
+Reports
+
+Inventory
+
+Export CSV
+
+Export Excel
+
+====================================================
+
+BLOG MODULE
+
+SEO Friendly URL
+
+Categories
+
+Tags
+
+Related Blogs
+
+Comments
+
+Author
+
+Reading Time
+
+====================================================
+
+DIY VISION KIT MODULE
+
+Product Listing
+
+Component Details
+
+Download PDF
+
+Video Tutorials
+
+Purchase
+
+====================================================
+
+3D PRINTING MODULE
+
+Upload STL
+
+Upload Image
+
+Material Selection
+
+Quantity
+
+Description
+
+Price Request
+
+Admin Approval
+
+Status Tracking
+
+====================================================
+
+TRACK ORDER
+
+Order ID
+
+Phone Number
+
+Timeline
+
+Status
+
+Invoice
+
+Delivery Updates
+
+====================================================
+
+CONTACT PAGE
+
+Google Map
+
+Phone
+
+Email
+
+WhatsApp
+
+Social Links
+
+Contact Form
+
+====================================================
+
+ABOUT PAGE
+
+Company Story
+
+Mission
+
+Vision
+
+Services
+
+Timeline
+
+Achievements
+
+====================================================
+
+FAQ PAGE
+
+Search
+
+Accordion
+
+Categories
+
+====================================================
+
+POLICIES
+
+Privacy Policy
+
+Terms
+
+Return Policy
+
+Refund Policy
+
+Shipping Policy
+
+Cancellation Policy
+
+====================================================
+
+OFFERS PAGE
+
+Flash Sale
+
+Festival Sale
+
+Combo Offers
+
+Coupons
+
+Countdown
+
+====================================================
+
+SEARCH SYSTEM
+
+Live Search
+
+Suggestions
+
+Recent Searches
+
+Popular Searches
+
+====================================================
+
+NOTIFICATIONS
+
+Order Updates
+
+Offer Alerts
+
+Admin Alerts
+
+Browser Notifications
+
+====================================================
+
+WISHLIST
+
+Move To Cart
+
+Share Wishlist
+
+====================================================
+
+COMPARE
+
+Compare Features
+
+Compare Specs
+
+Compare Price
+
+====================================================
+
+DATABASE TABLES
+
+users
+
+admins
+
+products
+
+categories
+
+subcategories
+
+brands
+
+orders
+
+order_items
+
+cart
+
+wishlist
+
+compare
+
+reviews
+
+addresses
+
+payments
+
+offers
+
+coupons
+
+blogs
+
+blog_categories
+
+notifications
+
+contact_messages
+
+newsletter
+
+faq
+
+site_settings
+
+banners
+
+3d_print_requests
+
+diy_orders
+
+====================================================
+
+REST API
+
+Create proper REST APIs for every module.
+
+Use MVC architecture.
+
+Proper validation.
+
+Proper error handling.
+
+Pagination.
+
+Filtering.
+
+Searching.
+
+Image upload.
+
+JWT Middleware.
+
+Admin Middleware.
+
+====================================================
+
+SECURITY
+
+Helmet
+
+CORS
+
+Rate Limiter
+
+bcrypt
+
+JWT
+
+Input Validation
+
+SQL Injection Protection
+
+XSS Protection
+
+CSRF Protection
+
+====================================================
+
+SEO
+
+Meta Title
+
+Meta Description
+
+Open Graph
+
+Twitter Card
+
+Structured Data
+
+Canonical URL
+
+robots.txt
+
+sitemap.xml
+
+SEO Friendly URL
+
+====================================================
+
+PERFORMANCE
+
+Lazy Loading
+
+Image Compression
+
+Caching
+
+Code Splitting
+
+Minification
+
+Optimization
+
+====================================================
+
+HOSTINGER DEPLOYMENT
+
+Prepare project for Hostinger deployment.
+
+Configure MySQL.
+
+Create .env.example
+
+Create deployment guide.
+
+Create SQL schema.
+
+Create README.
+
+====================================================
+
+BONUS FEATURES
+
+Dark Mode
+
+AI Chat Assistant
+
+Voice Search
+
+Recently Viewed
+
+Frequently Bought Together
+
+Invoice PDF
+
+WhatsApp Order Updates
+
+Low Stock Alerts
+
+Admin Sales Graph
+
+Customer Analytics
+
+Referral System
+
+Loyalty Points
+
+Bulk Upload
+
+CSV Import
+
+CSV Export
+
+PWA Support
+
+Google Analytics
+
+Google Search Console Integration
+
+====================================================
+
+DEVELOPMENT PROCESS
+
+First generate:
+
+1. Complete project architecture
+
+2. Folder structure
+
+3. Database ER diagram
+
+4. SQL schema
+
+5. API documentation
+
+6. UI wireframes
+
+7. Development roadmap
+
+8. Component list
+
+9. Route structure
+
+10. Admin flow
+
+11. User flow
+
+12. Authentication flow
+
+13. Deployment flow
+
+Wait for approval.
+
+After approval, generate complete code module by module.
+
+Never skip files.
+
+Always generate production-quality code.
+
+Code must be clean, reusable, scalable, commented, and ready for commercial deployment.
+
+Act as a senior software team, not as a code generator.
