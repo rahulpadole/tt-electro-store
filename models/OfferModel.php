@@ -22,26 +22,41 @@ class OfferModel {
     }
 
     public function create(array $d): array {
+        // Normalize discount: store as plain numeric string (strip any trailing %)
+        $discount = isset($d['discount']) && $d['discount'] !== ''
+            ? rtrim(trim((string)$d['discount']), '%')
+            : null;
+
         $st = $this->db->prepare(
-            'INSERT INTO offers (title,description,type,discount,ends_at,image,badge) VALUES (?,?,?,?,?,?,?)'
+            'INSERT INTO offers (title, description, type, discount, ends_at, image, badge)
+             VALUES (?, ?, ?, ?, ?, ?, ?)'
         );
         $st->execute([
-            $d['title'],
-            $d['description'] ?? null,
+            trim($d['title']),
+            isset($d['description']) && $d['description'] !== '' ? $d['description'] : null,
             $d['type'] ?? 'flash',
-            $d['discount'] ?? null,
-            $d['ends_at'] ?? null,
-            $d['image'] ?? null,
-            $d['badge'] ?? null,
+            $discount,
+            isset($d['ends_at']) && $d['ends_at'] !== '' ? $d['ends_at'] : null,
+            isset($d['image'])   && $d['image']   !== '' ? $d['image']   : null,
+            isset($d['badge'])   && $d['badge']   !== '' ? $d['badge']   : null,
         ]);
         return $this->findById((int)$this->db->lastInsertId());
     }
 
     public function update(int $id, array $d): ?array {
-        $allowed = ['title','description','type','discount','ends_at','image','badge'];
-        $fields = []; $vals = [];
+        $allowed = ['title', 'description', 'type', 'discount', 'ends_at', 'image', 'badge'];
+        $fields  = [];
+        $vals    = [];
         foreach ($allowed as $f) {
-            if (array_key_exists($f, $d)) { $fields[] = "{$f}=?"; $vals[] = $d[$f]; }
+            if (array_key_exists($f, $d)) {
+                $val = $d[$f];
+                // Normalize discount on update too
+                if ($f === 'discount' && $val !== null && $val !== '') {
+                    $val = rtrim(trim((string)$val), '%');
+                }
+                $fields[] = "{$f}=?";
+                $vals[]   = ($val === '' ? null : $val);
+            }
         }
         if (empty($fields)) return $this->findById($id);
         $vals[] = $id;
