@@ -216,3 +216,11 @@ mbind: Operation not permitted
 mbind: Operation not permitted
 mbind: Operation not permitted
 mbind: Operation not permitted
+2026-06-21T14:05:50.877481Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 449
+2026-06-21T14:05:51.206724Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-21T14:05:51.787827Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-21T14:05:52.032834Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-21T14:05:52.043559Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-21T14:05:52.113120Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-21T14:05:52.113194Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-21T14:05:52.161155Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
