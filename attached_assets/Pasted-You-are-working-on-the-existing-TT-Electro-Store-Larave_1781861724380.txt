@@ -1,0 +1,422 @@
+You are working on the existing TT Electro Store Laravel e-commerce project.
+
+Implement the following changes carefully without breaking any existing functionality.
+
+====================================================
+
+CHANGE 1: FREE SHIPPING LOGIC
+
+Modify the shipping calculation system.
+
+Rules:
+
+- If Order Total >= ₹999
+  Shipping Charge = ₹0
+
+  Display:
+  "Congratulations! You got FREE Delivery."
+
+- If Order Total < ₹999
+
+  Shipping Charge = ₹60
+
+  Display:
+  "Add ₹(999 - current total) more to get FREE Delivery."
+
+Apply this logic on:
+
+✔ Cart Page
+✔ Checkout Page
+✔ Order Summary
+✔ Invoice
+✔ Admin Order View
+
+The shipping calculation should happen dynamically.
+
+====================================================
+
+CHANGE 2: MULTIPLE PRODUCT IMAGE UPLOAD
+
+Currently only one image is supported.
+
+Modify the Product Management System to support multiple images.
+
+Admin Panel:
+
+- Add Multiple Images Upload
+- Drag & Drop Upload
+- Preview Images
+- Delete Individual Images
+- Reorder Images
+- Select Primary Image
+
+Database:
+
+Create a new table:
+
+product_images
+
+Fields:
+
+id
+product_id
+image_path
+is_primary
+sort_order
+created_at
+updated_at
+
+Product Details Page:
+
+- Large Main Image
+- Thumbnail Gallery
+- Click Thumbnail to Change Main Image
+- Zoom Support
+
+Product Listing:
+
+Always display Primary Image.
+
+====================================================
+
+CHANGE 3: ORDER CANCELLATION SYSTEM
+
+Allow customers to cancel orders ONLY before shipping.
+
+Order Status Flow:
+
+Pending
+
+Confirmed
+
+Packed
+
+Shipped
+
+Delivered
+
+Cancelled
+
+Rules:
+
+If status is:
+
+Pending
+Confirmed
+Packed
+
+Show button:
+
+"Cancel Order"
+
+If status becomes:
+
+Shipped
+
+Delivered
+
+Cancelled
+
+Hide Cancel Button.
+
+When user clicks Cancel:
+
+Show confirmation popup:
+
+"Are you sure you want to cancel this order?"
+
+After confirmation:
+
+Status becomes:
+
+Cancelled
+
+Save:
+
+Cancellation Date
+
+Cancellation Reason
+
+Create a dedicated page:
+
+My Account → Cancelled Orders
+
+Admin Panel:
+
+View cancelled orders
+
+Cancellation reason
+
+Cancellation date
+
+Customer details
+
+Send Email Notification
+
+====================================================
+
+CHANGE 4: REMOVE CASH ON DELIVERY
+
+Remove COD completely.
+
+Delete COD option from:
+
+Checkout
+
+Payment Selection
+
+Order Confirmation
+
+Admin Payment Settings
+
+Database logic
+
+Only online payment methods should remain.
+
+If payment gateway is not configured, show:
+
+"Online payment gateway will be available soon."
+
+====================================================
+
+CHANGE 5: REMOVE SPECIFICATIONS SECTION
+
+Remove the entire "Specifications" section from:
+
+Product Details Page
+
+Admin Product Form
+
+Database display
+
+Frontend UI
+
+Backend API response
+
+Keep only:
+
+Description
+
+Features
+
+Product Images
+
+Reviews
+
+Related Products
+
+====================================================
+
+CHANGE 6: ADVANCED SEO OPTIMIZATION
+
+Optimize the entire website for Google Search.
+
+Primary Keywords:
+
+TT Electronic
+
+TT Electronics
+
+TT Electro Store
+
+Electronic Store
+
+Electronics Store India
+
+Electronic Components
+
+Electronic Components Store
+
+Buy Electronic Components Online
+
+Robotics Components
+
+Arduino Components
+
+ESP32 Components
+
+Sensors
+
+DIY Electronics
+
+Electronics Shop
+
+PCB Components
+
+Electronics India
+
+Electronic Parts
+
+Embedded Components
+
+3D Printing Services
+
+DIY Vision Kit
+
+Electronics Accessories
+
+SEO Improvements:
+
+Dynamic Meta Title
+
+Dynamic Meta Description
+
+Canonical URLs
+
+Open Graph Tags
+
+Twitter Cards
+
+JSON-LD Structured Data
+
+Breadcrumb Schema
+
+robots.txt
+
+sitemap.xml
+
+Schema.org Product Markup
+
+Organization Schema
+
+Website Schema
+
+FAQ Schema
+
+Blog Schema
+
+Generate SEO-friendly URLs:
+
+/products/arduino-uno-r3
+
+instead of
+
+/product?id=15
+
+Generate optimized H1, H2, H3 hierarchy.
+
+Automatically generate ALT text for product images.
+
+Implement internal linking.
+
+Generate breadcrumb navigation.
+
+Optimize for Core Web Vitals.
+
+Implement lazy loading.
+
+Compress images.
+
+Preload important assets.
+
+Create dynamic XML Sitemap.
+
+Generate robots.txt.
+
+Create proper favicon.
+
+Optimize for Google Search Console.
+
+Optimize for Bing Search.
+
+Optimize for voice search.
+
+Ensure every page has unique meta title and description.
+
+====================================================
+
+CHANGE 7: SHIPPING MESSAGE UI
+
+On Cart Page display:
+
+If eligible:
+
+✅ FREE Delivery Applied
+
+If not eligible:
+
+🚚 Add ₹XXX more to unlock FREE Delivery.
+
+Use a professional green notification card.
+
+====================================================
+
+CHANGE 8: ADMIN PRODUCT FORM
+
+Admin should be able to manage:
+
+Product Images (Multiple)
+
+Primary Image
+
+Gallery Order
+
+Description
+
+Features
+
+Price
+
+Discount
+
+Stock
+
+Brand
+
+Category
+
+Subcategory
+
+Tags
+
+SEO Title
+
+SEO Description
+
+Slug
+
+Status
+
+Featured Product
+
+Trending Product
+
+Best Seller
+
+New Arrival
+
+Offer Product
+
+====================================================
+
+IMPORTANT
+
+Do not break existing functionality.
+
+Update migrations if needed.
+
+Update models.
+
+Update controllers.
+
+Update Blade views.
+
+Update routes.
+
+Update validation.
+
+Update APIs.
+
+Update admin panel.
+
+Update frontend.
+
+Update database.
+
+Update documentation.
+
+Maintain production-quality code.
+
+Test every feature before completion.
+
+Provide a summary of all modified files after implementation.

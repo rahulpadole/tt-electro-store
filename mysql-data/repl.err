@@ -1,0 +1,218 @@
+2026-06-12T21:57:12.434675Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 604
+2026-06-12T21:57:12.473504Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T21:57:12.665283Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T21:57:12.856019Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T21:57:12.856052Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T21:57:12.895127Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-12T21:59:24.701160Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 935
+2026-06-12T21:59:24.746368Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T21:59:25.520249Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T21:59:25.728813Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-12T21:59:25.797543Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-12T21:59:25.862855Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T21:59:25.862911Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T21:59:25.898354Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-12T21:59:26.600984Z 10 [Warning] [MY-013360] [Server] Plugin mysql_native_password reported: ''mysql_native_password' is deprecated and will be removed in a future release. Please use caching_sha2_password instead'
+2026-06-12T22:00:40.789592Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1118
+2026-06-12T22:00:40.947231Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T22:00:41.988169Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T22:00:42.297505Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-12T22:00:42.407895Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-12T22:00:42.473631Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T22:00:42.473684Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T22:00:42.517143Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-12T22:01:43.417723Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1267
+2026-06-12T22:01:43.478382Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T22:01:44.275975Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T22:01:44.424141Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-12T22:01:44.559003Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-12T22:01:44.653628Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T22:01:44.653687Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T22:01:44.682608Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-12T22:15:12.228422Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 3432
+2026-06-12T22:15:12.347799Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T22:15:13.195857Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T22:15:13.475156Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-12T22:15:13.491725Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-12T22:15:13.542125Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T22:15:13.542184Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T22:15:13.568282Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-12T22:20:44.975607Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 4525
+2026-06-12T22:20:45.102390Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-12T22:20:45.841039Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-12T22:20:45.979006Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-12T22:20:45.992941Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-12T22:20:46.030196Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-12T22:20:46.030246Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-12T22:20:46.063001Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-13T14:45:19.293656Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 314
+2026-06-13T14:45:19.579504Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-13T14:45:21.035678Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-13T14:45:21.358745Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-13T14:45:21.369014Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-13T14:45:21.451521Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-13T14:45:21.451708Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-13T14:45:21.495572Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-13T15:08:35.547175Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 659
+2026-06-13T15:08:35.719721Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-13T15:08:36.636478Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-13T15:08:36.929454Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-13T15:08:36.941494Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-13T15:08:37.050277Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-13T15:08:37.050348Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-13T15:08:37.079342Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-13T15:27:24.281316Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 2687
+2026-06-13T15:27:24.410869Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-13T15:27:25.603275Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-13T15:27:25.860113Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-13T15:27:25.977582Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-13T15:27:26.018034Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-13T15:27:26.018119Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-13T15:27:26.055525Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-13T15:34:28.416472Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 3949
+2026-06-13T15:34:28.684684Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-13T15:34:29.794132Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-13T15:34:30.127879Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-13T15:34:30.136712Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-13T15:34:30.217988Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-13T15:34:30.218048Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-13T15:34:30.308950Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+mbind: Operation not permitted
+2026-06-13T18:36:19.839748Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 234
+2026-06-13T18:36:20.150798Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-13T18:36:21.539095Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-13T18:36:21.936986Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-13T18:36:21.948094Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-13T18:36:22.035927Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-13T18:36:22.035984Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-13T18:36:22.101310Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T08:54:29.048847Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 349
+2026-06-19T08:54:29.347564Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T08:54:30.572068Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T08:54:31.131572Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T08:54:31.146622Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T08:54:31.266791Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T08:54:31.266860Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T08:54:31.336158Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T09:06:42.335915Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1574
+2026-06-19T09:06:42.427769Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1573
+2026-06-19T09:06:42.552204Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T09:06:42.552261Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T09:06:42.824643Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:43.824969Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:43.982960Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T09:06:44.270831Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T09:06:44.355165Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T09:06:44.405638Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T09:06:44.405693Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T09:06:44.470874Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T09:06:44.825421Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:45.825686Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:46.826662Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:47.826904Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:48.827211Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:49.827753Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:50.828020Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:51.828485Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:52.829068Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:53.829381Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:54.829831Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:55.830416Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:56.831023Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:06:57.831515Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-06-19T09:07:10.509888Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1696
+2026-06-19T09:07:10.565405Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T09:07:11.123701Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T09:07:11.310612Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T09:07:11.441372Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T09:07:11.535241Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T09:07:11.535309Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T09:07:11.562472Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T09:10:28.958319Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 2169
+2026-06-19T09:10:28.999887Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T09:10:29.619058Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T09:10:29.846958Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T09:10:29.916401Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T09:10:29.971158Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T09:10:29.971300Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T09:10:30.002513Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T09:43:23.929848Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 7174
+2026-06-19T09:43:24.205945Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T09:43:26.216256Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T09:43:26.475398Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T09:43:26.624680Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T09:43:26.739439Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T09:43:26.739515Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T09:43:26.785117Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T10:04:18.556179Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 12945
+2026-06-19T10:04:18.698280Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:04:19.459047Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:04:19.688248Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:04:19.867761Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:04:19.932274Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:04:19.932372Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:04:19.970451Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+mbind: Operation not permitted
+2026-06-19T10:53:06.884865Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 341
+2026-06-19T10:53:07.281740Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:53:08.010285Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:53:08.345981Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:53:08.358870Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:53:08.461099Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:53:08.461279Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:53:08.516746Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T10:56:11.793466Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 577
+2026-06-19T10:56:11.822366Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:56:12.331579Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:56:12.537059Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:56:12.551252Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:56:12.609534Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:56:12.609603Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:56:12.642942Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T10:57:25.653580Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1038
+2026-06-19T10:57:25.706714Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:57:26.309917Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:57:26.636276Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:57:26.694879Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:57:26.762787Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:57:26.762867Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:57:26.797652Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T10:58:05.278239Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1218
+2026-06-19T10:58:05.328986Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:58:06.379443Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:58:06.674267Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:58:06.790185Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:58:06.881049Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:58:06.881127Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:58:06.908761Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T10:59:28.655431Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 1440
+2026-06-19T10:59:28.707272Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T10:59:29.489577Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T10:59:29.664327Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T10:59:29.702779Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T10:59:29.751922Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T10:59:29.751995Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T10:59:29.788351Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T11:02:31.024043Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 2075
+2026-06-19T11:02:31.285023Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T11:02:31.958679Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T11:02:32.139961Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T11:02:32.249153Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T11:02:32.302180Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T11:02:32.302278Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T11:02:32.337521Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-06-19T18:02:19.631185Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 474
+2026-06-19T18:02:19.876224Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-06-19T18:02:20.380126Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-06-19T18:02:20.624035Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-06-19T18:02:20.637612Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-06-19T18:02:20.711758Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-06-19T18:02:20.711838Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-06-19T18:02:20.761602Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+mbind: Operation not permitted
+mbind: Operation not permitted
+mbind: Operation not permitted
+mbind: Operation not permitted
+mbind: Operation not permitted
+mbind: Operation not permitted
+mbind: Operation not permitted

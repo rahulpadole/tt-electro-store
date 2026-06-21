@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /ajax/
+Disallow: /config/
+Disallow: /models/
+Disallow: /middleware/
+Disallow: /controllers/
+Disallow: /database/
+Disallow: /.env
+
+Sitemap: https://yourdomain.com/sitemap.xml

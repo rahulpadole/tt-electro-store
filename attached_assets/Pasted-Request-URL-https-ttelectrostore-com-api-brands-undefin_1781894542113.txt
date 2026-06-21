@@ -1,0 +1,88 @@
+Request URL
+https://ttelectrostore.com/api/brands/undefined
+Request Method
+DELETE
+Status Code
+404 Not Found
+Remote Address
+[2a02:4780:11:773:0:2f95:c25:3]:443
+Referrer Policy
+strict-origin-when-cross-origin
+access-control-allow-headers
+Content-Type, Authorization
+access-control-allow-methods
+GET,POST,PATCH,DELETE,OPTIONS
+access-control-allow-origin
+*
+alt-svc
+h3=":443"; ma=2592000, h3-29=":443"; ma=2592000, h3-Q050=":443"; ma=2592000, h3-Q046=":443"; ma=2592000, h3-Q043=":443"; ma=2592000, quic=":443"; ma=2592000; v="43,46"
+cache-control
+no-store, no-cache, must-revalidate
+content-encoding
+br
+content-length
+56
+content-security-policy
+upgrade-insecure-requests
+content-type
+application/json; charset=utf-8
+date
+Fri, 19 Jun 2026 18:42:19 GMT
+expires
+Thu, 19 Nov 1981 08:52:00 GMT
+panel
+hpanel
+platform
+hostinger
+pragma
+no-cache
+referrer-policy
+strict-origin-when-cross-origin
+server
+LiteSpeed
+vary
+Accept-Encoding
+x-content-type-options
+nosniff
+x-frame-options
+SAMEORIGIN
+x-xss-protection
+1; mode=block
+:authority
+ttelectrostore.com
+:method
+DELETE
+:path
+/api/brands/undefined
+:scheme
+https
+accept
+*/*
+accept-encoding
+gzip, deflate, br, zstd
+accept-language
+en-GB,en-US;q=0.9,en;q=0.8
+content-type
+application/json
+cookie
+__ssid=78c2904a-d3d5-46e2-b25b-92e6a9ba4e43; wp-settings-1=libraryContent%3Dbrowse%26editor%3Dtinymce; wp-settings-time-1=1779875297; _ga=GA1.2.1285719375.1781114844; _ga_9Q6H0QETRF=GS2.2.s1781114844$o1$g0$t1781114844$j60$l0$h0; tt_electro_session=7gljra7ogpfnvod5r5rg21mb2m
+origin
+https://ttelectrostore.com
+priority
+u=1, i
+referer
+https://ttelectrostore.com/admin/brands
+sec-ch-ua
+"Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+sec-ch-ua-mobile
+?0
+sec-ch-ua-platform
+"Windows"
+sec-fetch-dest
+empty
+sec-fetch-mode
+cors
+sec-fetch-site
+same-origin
+user-agent
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36

@@ -1,0 +1,815 @@
+You are an Elite Senior Laravel Developer, Full Stack Engineer, UI/UX Designer, Database Architect, DevOps Engineer, SEO Specialist, and Security Expert.
+
+Your mission is to build a COMPLETE PRODUCTION-READY E-COMMERCE WEBSITE for "TT ELECTRO STORE".
+
+This project is NOT a demo or learning project.
+It is a real commercial website that will be deployed on Hostinger Premium Hosting and used by real customers.
+
+Every feature must be fully functional, optimized, secure, scalable, responsive, and production-ready.
+
+========================================================
+
+TECH STACK
+
+Framework:
+Laravel 12 (Latest Stable)
+
+Language:
+PHP 8.3+
+
+Database:
+MySQL (Hostinger Database)
+
+Frontend:
+Blade Templates
+Bootstrap 5
+Tailwind CSS
+JavaScript ES6
+Alpine.js
+
+Authentication:
+Laravel Breeze
+
+ORM:
+Eloquent ORM
+
+Storage:
+Laravel Storage
+
+Image Processing:
+Intervention Image
+
+Email:
+SMTP (Hostinger Email)
+
+Deployment:
+Hostinger Premium Hosting
+
+========================================================
+
+PROJECT REQUIREMENTS
+
+Use Laravel MVC Architecture.
+
+Follow SOLID Principles.
+
+Write reusable code.
+
+Use Service Classes.
+
+Use Repository Pattern where needed.
+
+Use proper validation.
+
+Use Form Requests.
+
+Use Middleware.
+
+Use Laravel Policies.
+
+Use Gates.
+
+Use Queue where needed.
+
+Optimize database queries.
+
+Use eager loading.
+
+Avoid N+1 queries.
+
+Write production quality code.
+
+========================================================
+
+UI DESIGN
+
+Create a premium UI inspired by:
+
+Apple
+
+Amazon
+
+Reliance Digital
+
+Flipkart
+
+Design should include:
+
+Modern Hero
+
+Rounded cards
+
+Professional typography
+
+Smooth animations
+
+Hover effects
+
+Loading skeletons
+
+Mega menu
+
+Sticky header
+
+Sticky mobile bottom navigation
+
+Floating WhatsApp button
+
+Responsive design
+
+Dark mode support
+
+Premium footer
+
+Modern forms
+
+========================================================
+
+COLOR THEME
+
+Primary:
+#2563EB
+
+Secondary:
+#0F172A
+
+Accent:
+#06B6D4
+
+Background:
+#F8FAFC
+
+White Cards
+
+Soft Shadows
+
+Professional Gradients
+
+========================================================
+
+HOME PAGE
+
+Hero Slider
+
+Featured Categories
+
+Top Selling Products
+
+Trending Products
+
+New Arrivals
+
+Today's Deals
+
+Offer Banner
+
+Brand Slider
+
+DIY Vision Kits
+
+3D Printing Service
+
+Customer Reviews
+
+Latest Blogs
+
+Newsletter
+
+FAQ
+
+Footer
+
+========================================================
+
+NAVIGATION
+
+Home
+
+Products
+
+Categories
+
+DIY Vision Kit
+
+3D Printing
+
+Offers
+
+Blogs
+
+Track Order
+
+About Us
+
+Contact
+
+Wishlist
+
+Compare
+
+Cart
+
+My Account
+
+Search
+
+========================================================
+
+PRODUCT SYSTEM
+
+Categories
+
+Subcategories
+
+Brands
+
+Unlimited Products
+
+Multiple Images
+
+Product Gallery
+
+Product Variants
+
+Stock Management
+
+SKU
+
+Specifications
+
+Features
+
+Downloads
+
+Related Products
+
+Recently Viewed
+
+Rating
+
+Reviews
+
+Share
+
+Wishlist
+
+Compare
+
+Quick View
+
+Search
+
+Filters
+
+Sorting
+
+Pagination
+
+========================================================
+
+PRODUCT DETAILS PAGE
+
+Large Gallery
+
+Zoom
+
+Description
+
+Technical Specs
+
+Reviews
+
+Related Products
+
+Frequently Bought Together
+
+Add To Cart
+
+Buy Now
+
+Wishlist
+
+Compare
+
+Estimated Delivery
+
+Shipping Policy
+
+Return Policy
+
+========================================================
+
+CART
+
+Update Quantity
+
+Coupon
+
+Shipping Cost
+
+GST
+
+Remove Product
+
+Save For Later
+
+Subtotal
+
+Grand Total
+
+========================================================
+
+CHECKOUT
+
+Guest Checkout
+
+Login Checkout
+
+Multiple Addresses
+
+Shipping Method
+
+Payment Method
+
+COD
+
+Online Payment Ready
+
+Order Notes
+
+Invoice
+
+Order Confirmation
+
+========================================================
+
+USER AUTHENTICATION
+
+Register
+
+Login
+
+Forgot Password
+
+Reset Password
+
+Email Verification
+
+Profile Update
+
+Password Change
+
+Address Management
+
+========================================================
+
+USER DASHBOARD
+
+Dashboard
+
+Orders
+
+Wishlist
+
+Compare
+
+Addresses
+
+Notifications
+
+Invoices
+
+Downloads
+
+Track Orders
+
+Coupons
+
+Settings
+
+========================================================
+
+ADMIN PANEL
+
+Dashboard
+
+Sales Analytics
+
+Customers
+
+Products
+
+Categories
+
+Brands
+
+Orders
+
+Coupons
+
+Offers
+
+Blogs
+
+Testimonials
+
+Notifications
+
+Banners
+
+Homepage Settings
+
+SEO Settings
+
+Reports
+
+Inventory
+
+Newsletter
+
+Contact Messages
+
+FAQ
+
+Site Settings
+
+========================================================
+
+BLOG SYSTEM
+
+SEO Friendly URL
+
+Tags
+
+Categories
+
+Author
+
+Related Blogs
+
+Comments
+
+Reading Time
+
+========================================================
+
+DIY VISION KIT
+
+Product List
+
+Tutorials
+
+PDF Downloads
+
+Videos
+
+Purchase
+
+========================================================
+
+3D PRINTING SERVICE
+
+Upload STL
+
+Upload Image
+
+Material Selection
+
+Description
+
+Quantity
+
+Admin Quotation
+
+Status Tracking
+
+========================================================
+
+ORDER TRACKING
+
+Track by Order ID
+
+Track by Mobile
+
+Timeline
+
+Invoice Download
+
+Delivery Updates
+
+========================================================
+
+CONTACT PAGE
+
+Google Map
+
+Phone
+
+Email
+
+WhatsApp
+
+Social Links
+
+Contact Form
+
+========================================================
+
+ABOUT PAGE
+
+Company
+
+Mission
+
+Vision
+
+Timeline
+
+Achievements
+
+========================================================
+
+FAQ
+
+Accordion
+
+Search
+
+Categories
+
+========================================================
+
+POLICIES
+
+Privacy Policy
+
+Terms
+
+Return Policy
+
+Refund Policy
+
+Shipping Policy
+
+Cancellation Policy
+
+========================================================
+
+OFFERS PAGE
+
+Flash Sale
+
+Festival Sale
+
+Combo Offers
+
+Coupons
+
+Countdown Timer
+
+========================================================
+
+DATABASE TABLES
+
+users
+
+admins
+
+products
+
+product_images
+
+categories
+
+subcategories
+
+brands
+
+orders
+
+order_items
+
+payments
+
+addresses
+
+wishlist
+
+compare
+
+cart
+
+reviews
+
+blogs
+
+blog_categories
+
+offers
+
+coupons
+
+notifications
+
+contact_messages
+
+newsletter
+
+faq
+
+banners
+
+site_settings
+
+3d_print_requests
+
+diy_orders
+
+========================================================
+
+SEO
+
+Dynamic Meta
+
+Open Graph
+
+Twitter Cards
+
+Structured Data
+
+robots.txt
+
+sitemap.xml
+
+Canonical URL
+
+Breadcrumb Schema
+
+========================================================
+
+SECURITY
+
+CSRF
+
+XSS Protection
+
+SQL Injection Protection
+
+Rate Limiting
+
+Laravel Policies
+
+Middleware
+
+Validation
+
+Sanitization
+
+Password Hashing
+
+========================================================
+
+PERFORMANCE
+
+Caching
+
+Image Compression
+
+Lazy Loading
+
+Database Optimization
+
+Asset Minification
+
+CDN Ready
+
+Browser Cache
+
+========================================================
+
+HOSTINGER DEPLOYMENT
+
+Project should run perfectly on Hostinger Premium Hosting.
+
+Create:
+
+README.md
+
+Installation Guide
+
+Deployment Guide
+
+.env.example
+
+Database SQL
+
+Apache .htaccess
+
+Optimization Commands
+
+Cron Job Guide
+
+Backup Guide
+
+========================================================
+
+BONUS FEATURES
+
+Dark Mode
+
+AI Chat Widget Placeholder
+
+Voice Search
+
+Recently Viewed
+
+Frequently Bought Together
+
+Loyalty Points
+
+Referral System
+
+Invoice PDF
+
+WhatsApp Order Updates
+
+Admin Sales Charts
+
+Inventory Alerts
+
+CSV Import
+
+CSV Export
+
+Bulk Upload
+
+Google Analytics
+
+Search Console Verification
+
+PWA Ready
+
+========================================================
+
+IMPORTANT DEVELOPMENT RULES
+
+Generate the project in phases.
+
+Phase 1:
+Architecture
+Folder Structure
+Database Design
+ER Diagram
+Routes
+Development Plan
+
+Phase 2:
+Database
+Migrations
+Models
+
+Phase 3:
+Authentication
+
+Phase 4:
+Frontend
+
+Phase 5:
+Admin Panel
+
+Phase 6:
+User Dashboard
+
+Phase 7:
+API
+
+Phase 8:
+SEO
+
+Phase 9:
+Testing
+
+Phase 10:
+Deployment
+
+Do NOT generate placeholder code.
+
+Do NOT leave TODO comments.
+
+Every file must be fully functional.
+
+Every controller must work.
+
+Every model must be connected.
+
+Every migration must be complete.
+
+Every page must be responsive.
+
+Every form must be validated.
+
+Every feature must work end-to-end.
+
+Act like a team of senior engineers building a ₹1,00,000+ commercial e-commerce project.
+
+At every phase, explain decisions, generate clean code, and ensure the project remains runnable.

@@ -1,0 +1,137 @@
+A critical bug exists in the Product Update API.
+
+Current error:
+
+PATCH /api/products/{id}
+
+returns
+
+HTTP 500 Internal Server Error
+
+with
+
+Content-Length: 0
+
+The frontend then throws
+
+Failed to execute 'json' on 'Response': Unexpected end of JSON input
+
+Your task is to debug and permanently fix this issue.
+
+### Investigate
+
+* api/products PATCH route
+* Router configuration
+* ProductController update method
+* ProductModel update method
+* Database queries
+* Validation
+* Uploaded images
+* JSON decoding
+* Request body parsing
+* PHP exceptions
+* PDO exceptions
+* Transactions
+
+### Enable debugging
+
+Temporarily enable:
+
+```php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+set_error_handler(...);
+set_exception_handler(...);
+```
+
+Log every exception.
+
+Never allow a blank response.
+
+### API Response Standard
+
+Every API endpoint must ALWAYS return JSON.
+
+Success:
+
+```json
+{
+    "success": true,
+    "message": "Product updated successfully",
+    "data": {}
+}
+```
+
+Failure:
+
+```json
+{
+    "success": false,
+    "message": "Actual error message",
+    "error": "...",
+    "line": 123,
+    "file": "ProductController.php"
+}
+```
+
+Never return an empty body.
+
+### Check
+
+* PATCH method parsing
+* php://input reading
+* JSON decoding
+* Content-Type application/json
+* Missing fields
+* Undefined array indexes
+* Null values
+* Image processing
+* SQL syntax
+* Foreign keys
+* NOT NULL violations
+* Duplicate keys
+* Missing database columns
+
+### Database
+
+Compare ProductModel with actual MySQL table.
+
+If columns are missing or datatypes mismatch, generate SQL fixes.
+
+### Frontend
+
+Update apiFetch() so it safely handles empty responses.
+
+Replace
+
+```javascript
+const data = await response.json();
+```
+
+with
+
+```javascript
+const text = await response.text();
+
+const data = text ? JSON.parse(text) : {};
+
+if (!response.ok) {
+    throw new Error(data.message || "Server Error");
+}
+```
+
+This prevents "Unexpected end of JSON input".
+
+### Final Output
+
+Provide:
+
+* Root cause
+* Exact file causing error
+* Line number
+* Fix applied
+* SQL changes (if needed)
+* Updated API response format
+
+Do not stop until PATCH /api/products/{id} returns valid JSON and HTTP 200 on success or proper JSON on failure.

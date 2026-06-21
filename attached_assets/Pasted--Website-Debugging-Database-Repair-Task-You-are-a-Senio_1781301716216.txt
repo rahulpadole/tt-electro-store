@@ -1,0 +1,122 @@
+# Website Debugging + Database Repair Task
+
+You are a Senior Full Stack PHP Developer, Database Architect, and QA Engineer.
+
+I already have a complete e-commerce website built with Replit AI. The project is deployed, and the MySQL database is hosted on Hostinger.
+
+Some features are not working correctly. The issue may be in the application code, database schema, missing tables, missing columns, incorrect relationships, constraints, indexes, or inconsistent data.
+
+Your task is to perform a complete project audit and repair.
+
+## Code Analysis
+
+* Analyze the entire project.
+* Check frontend and backend logic.
+* Fix every broken feature.
+* Do not redesign the project.
+* Preserve the existing UI and architecture.
+* Do not remove existing functionality.
+
+## Database Analysis
+
+Inspect the complete database and compare it with the project requirements.
+
+Verify:
+
+* All required tables exist.
+* All required columns exist.
+* Correct data types are used.
+* Primary keys.
+* Foreign keys.
+* Unique constraints.
+* Indexes.
+* AUTO_INCREMENT settings.
+* Default values.
+* NOT NULL constraints.
+* Relationships between tables.
+* Cascade rules.
+* Missing lookup tables.
+* Missing configuration tables.
+
+Check whether the code expects database fields that do not currently exist.
+
+If any table or column is missing, create it.
+
+If any datatype is incorrect, fix it.
+
+If indexes are missing, add them.
+
+If relationships are incorrect, repair them.
+
+## SQL Repair File
+
+Generate a single SQL file that can be executed safely on the Hostinger database.
+
+The SQL file should:
+
+* Create missing tables.
+* Add missing columns.
+* Modify incorrect columns.
+* Add indexes.
+* Add foreign keys.
+* Update default values.
+* Insert required default records.
+* Repair relationships.
+* Preserve existing data as much as possible.
+* Avoid dropping data unless absolutely necessary.
+* Use IF EXISTS / IF NOT EXISTS checks wherever possible.
+* Be compatible with MySQL/MariaDB used by Hostinger.
+
+## Application Testing
+
+Verify:
+
+* Registration
+* Login
+* Google Login
+* Profile
+* Products
+* Categories
+* Search
+* Cart
+* Wishlist
+* Checkout
+* Orders
+* Payment
+* Admin Panel
+* APIs
+* Session Management
+* File Uploads
+* Image Loading
+* Responsive Design
+
+## Error Checking
+
+Check:
+
+* Browser Console Errors
+* JavaScript Errors
+* PHP Errors
+* HTTP 500 Errors
+* Network Errors
+* SQL Errors
+* Undefined Variables
+* Null References
+* API Failures
+
+Fix every issue found.
+
+## Final Deliverables
+
+Provide:
+
+1. List of all bugs found.
+2. List of all fixes applied.
+3. Files modified.
+4. Database issues identified.
+5. A complete SQL repair/update script in one file for Hostinger.
+6. Explanation of every database change.
+7. Any remaining issues, if any.
+8. Suggestions for improving performance and security.
+
+Do not stop after fixing one issue. Continue auditing and repairing until the entire website and database work correctly together without runtime errors.
