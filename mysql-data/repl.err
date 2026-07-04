@@ -249,3 +249,41 @@ mbind: Operation not permitted
 2026-07-04T16:09:28.785528Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
 2026-07-04T16:09:28.786664Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
 2026-07-04T16:09:28.821238Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+mbind: Operation not permitted
+2026-07-04T16:22:42.087835Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 4778
+2026-07-04T16:22:42.061344Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 4779
+2026-07-04T16:22:42.227406Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-07-04T16:22:42.233733Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-07-04T16:22:42.435480Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:43.175818Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-07-04T16:22:43.345523Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-07-04T16:22:43.354130Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-07-04T16:22:43.389798Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-07-04T16:22:43.389848Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-07-04T16:22:43.411532Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
+2026-07-04T16:22:43.435645Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:44.435815Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:45.436110Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:46.436568Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:47.436745Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:48.438892Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:49.439085Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:50.439269Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:51.439750Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:52.440187Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:53.440461Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:54.443587Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:55.443800Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:56.444020Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:57.444237Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:58.444463Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:22:59.444757Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:23:00.444996Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
+2026-07-04T16:23:11.032886Z 0 [System] [MY-010116] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld (mysqld 8.0.36) starting as process 5074
+2026-07-04T16:23:11.056474Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-07-04T16:23:11.732946Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-07-04T16:23:11.890331Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-07-04T16:23:11.913781Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-07-04T16:23:11.955176Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-07-04T16:23:11.955277Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-07-04T16:23:11.997219Z 0 [System] [MY-010931] [Server] /nix/store/0m5amw6lqhzla9b476f0galar7dcd33j-mysql-8.0.36/bin/mysqld: ready for connections. Version: '8.0.36'  socket: '/tmp/mysql.sock'  port: 3306  Source distribution.
