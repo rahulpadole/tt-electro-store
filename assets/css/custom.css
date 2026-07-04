@@ -1,14 +1,130 @@
 /* TT Electro Store — Custom Styles */
 
-/* ── Navbar scrolled state (light/dark) ─────────────────────────────────── */
-.nav-scrolled {
-  background: rgba(255,255,255,0.97);
-  border-color: #e2e8f0;
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVBAR — All light/dark styles in one place so Alpine :class bindings
+   never need dark: pseudo variants (those don't render from dynamic classes)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Scrolled nav background ─────────────────────────────────────────────── */
+.nav-scrolled { background: rgba(255,255,255,0.97); border-color: #e2e8f0; }
+.dark .nav-scrolled { background: hsl(222,47%,8%); border-color: rgba(255,255,255,0.09); }
+
+/* ── Logo ─────────────────────────────────────────────────────────────────── */
+.nav-logo-icon {
+  background: linear-gradient(135deg,rgba(37,99,235,0.12) 0%,rgba(6,182,212,0.10) 100%);
+  border: 1px solid rgba(37,99,235,0.18);
 }
-.dark .nav-scrolled {
-  background: hsl(222,47%,8%);
-  border-color: rgba(255,255,255,0.08);
+.dark .nav-logo-icon {
+  background: linear-gradient(135deg,rgba(37,99,235,0.20) 0%,rgba(6,182,212,0.15) 100%);
+  border-color: rgba(59,130,246,0.25);
 }
+.nav-wordmark-main { color: #0f172a; }
+.dark .nav-wordmark-main { color: #f1f5f9; }
+.nav-wordmark-sub { color: #64748b; }
+.dark .nav-wordmark-sub { color: #94a3b8; }
+
+/* ── Desktop nav links ────────────────────────────────────────────────────── */
+.nav-link { color: #475569; }
+.nav-link:hover { color: #0f172a; background: #f1f5f9; }
+.dark .nav-link { color: #cbd5e1; }
+.dark .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+.nav-link-offer { color: #d97706; }
+.nav-link-offer:hover { color: #b45309; background: rgba(245,158,11,0.08); }
+.dark .nav-link-offer { color: #fbbf24; }
+.dark .nav-link-offer:hover { color: #fde68a; background: rgba(245,158,11,0.12); }
+
+/* ── Icon buttons (theme, wishlist, cart, bell, hamburger) ───────────────── */
+.nav-icon-btn { color: #64748b; padding: 0.625rem; border-radius: 0.75rem; transition: background 0.15s, color 0.15s; }
+.nav-icon-btn:hover { color: #0f172a; background: #f1f5f9; }
+.dark .nav-icon-btn { color: #94a3b8; }
+.dark .nav-icon-btn:hover { color: #fff; background: rgba(255,255,255,0.09); }
+
+/* ── Search input ────────────────────────────────────────────────────────── */
+.nav-search {
+  background: #f8fafc; border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+.nav-search::placeholder { color: #94a3b8; }
+.nav-search:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+.dark .nav-search { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.09); color: #e2e8f0; }
+.dark .nav-search::placeholder { color: #64748b; }
+.dark .nav-search:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.18); }
+.nav-search-transparent {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.20);
+  color: #fff;
+}
+.nav-search-transparent::placeholder { color: rgba(255,255,255,0.5); }
+.nav-search-transparent:focus { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.40); }
+.nav-search-icon { color: #94a3b8; }
+.dark .nav-search-icon { color: #64748b; }
+
+/* ── User button ─────────────────────────────────────────────────────────── */
+.nav-user-btn { background: #f1f5f9; color: #374151; border: 1px solid transparent; }
+.nav-user-btn:hover { background: #e2e8f0; }
+.dark .nav-user-btn { background: rgba(255,255,255,0.08); color: #cbd5e1; border-color: rgba(255,255,255,0.06); }
+.dark .nav-user-btn:hover { background: rgba(255,255,255,0.13); }
+
+/* ── Dropdown panel ──────────────────────────────────────────────────────── */
+.nav-dropdown {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px -8px rgba(0,0,0,0.14), 0 4px 12px -2px rgba(0,0,0,0.07);
+}
+.dark .nav-dropdown {
+  background: hsl(222,47%,12%);
+  border-color: rgba(255,255,255,0.09);
+  box-shadow: 0 20px 48px -8px rgba(0,0,0,0.55);
+}
+.nav-dropdown-header { border-bottom: 1px solid #f1f5f9; color: #0f172a; }
+.dark .nav-dropdown-header { border-color: rgba(255,255,255,0.07); color: #f1f5f9; }
+.nav-dropdown-item { color: #475569; }
+.nav-dropdown-item:hover { color: #0f172a; background: #f8fafc; }
+.dark .nav-dropdown-item { color: #cbd5e1; }
+.dark .nav-dropdown-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.nav-dropdown-item-admin { color: #2563eb; }
+.nav-dropdown-item-admin:hover { background: #eff6ff; }
+.dark .nav-dropdown-item-admin { color: #60a5fa; }
+.dark .nav-dropdown-item-admin:hover { background: rgba(59,130,246,0.10); }
+.nav-dropdown-divider { border-top: 1px solid #f1f5f9; }
+.dark .nav-dropdown-divider { border-color: rgba(255,255,255,0.07); }
+.nav-dropdown-item-danger { color: #ef4444; }
+.nav-dropdown-item-danger:hover { background: #fef2f2; }
+.dark .nav-dropdown-item-danger { color: #f87171; }
+.dark .nav-dropdown-item-danger:hover { background: rgba(239,68,68,0.10); }
+
+/* ── Ghost login button ──────────────────────────────────────────────────── */
+.nav-btn-ghost { color: #374151; }
+.nav-btn-ghost:hover { background: #f1f5f9; }
+.dark .nav-btn-ghost { color: #cbd5e1; }
+.dark .nav-btn-ghost:hover { background: rgba(255,255,255,0.08); }
+
+/* ── Mobile menu ─────────────────────────────────────────────────────────── */
+.nav-mobile-menu { background: #fff; }
+.dark .nav-mobile-menu { background: hsl(222,47%,8%); }
+
+.mobile-nav-link { color: #475569; }
+.mobile-nav-link:hover { color: #0f172a; background: #f1f5f9; }
+.dark .mobile-nav-link { color: #cbd5e1; }
+.dark .mobile-nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+.mobile-nav-icon { color: #94a3b8; }
+.dark .mobile-nav-icon { color: #64748b; }
+
+.mobile-nav-link-offer { color: #d97706; }
+.mobile-nav-link-offer:hover { background: rgba(245,158,11,0.08); }
+.dark .mobile-nav-link-offer { color: #fbbf24; }
+.dark .mobile-nav-link-offer:hover { background: rgba(245,158,11,0.12); }
+
+.nav-mobile-auth { border-top: 1px solid #f1f5f9; padding-top: 0.5rem; padding-bottom: 0.25rem; }
+.dark .nav-mobile-auth { border-color: rgba(255,255,255,0.07); }
+
+.mobile-btn-ghost {
+  border: 1px solid #e2e8f0; color: #374151;
+}
+.mobile-btn-ghost:hover { background: #f8fafc; }
+.dark .mobile-btn-ghost { border-color: rgba(255,255,255,0.10); color: #cbd5e1; }
+.dark .mobile-btn-ghost:hover { background: rgba(255,255,255,0.06); }
 
 
 /* ── Base ───────────────────────────────────────────────── */
