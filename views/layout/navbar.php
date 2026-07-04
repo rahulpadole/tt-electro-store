@@ -21,35 +21,17 @@ $curPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
   <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 gap-3">
 
     <!-- ── Logo ─────────────────────────────────────────────────── -->
-    <a href="/" class="flex items-center flex-shrink-0 gap-2.5 min-w-0 group" aria-label="TT Electro Store">
-
-      <!-- Icon badge -->
-      <span class="nav-logo-icon flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-105"
-            :class="navTransparent ? 'bg-white/15 border border-white/25' : ''">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z"
-                :fill="navTransparent ? '#fff' : '#2563eb'"
-                stroke-width="0"/>
-          <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z"
-                :fill="navTransparent ? '#fff' : 'url(#logoGrad)'"
-                stroke-width="0"/>
-          <defs>
-            <linearGradient id="logoGrad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#2563eb"/>
-              <stop offset="1" stop-color="#06b6d4"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
-
-      <!-- Wordmark -->
-      <span class="leading-none flex-shrink-0"
-            :class="navTransparent ? 'text-white' : 'nav-wordmark'">
-        <span class="block text-[15px] font-extrabold tracking-tight leading-none"
-              :class="navTransparent ? 'text-white' : 'nav-wordmark-main'">TT Electro</span>
-        <span class="block text-[9.5px] font-semibold tracking-[0.12em] uppercase opacity-70 mt-0.5"
-              :class="navTransparent ? 'text-white/80' : 'nav-wordmark-sub'">Store</span>
-      </span>
+    <a href="/" class="flex items-center flex-shrink-0 min-w-0 group logo-link" aria-label="TT Electro Store">
+      <!-- Full horizontal logo (sm and up) -->
+      <img src="/assets/logo.png"
+           alt="TT Electro Store"
+           class="logo-full hidden sm:block h-10 w-auto transition-all duration-300 group-hover:opacity-90"
+           :class="(navTransparent || isDark) ? 'logo-invert' : ''">
+      <!-- Icon-only logo (mobile) -->
+      <img src="/assets/logo-icon.png"
+           alt="TT"
+           class="logo-icon sm:hidden h-9 w-auto transition-all duration-300 group-hover:opacity-90"
+           :class="(navTransparent || isDark) ? 'logo-invert' : ''">
     </a>
 
     <!-- ── Desktop Nav Links ──────────────────────────────────── -->

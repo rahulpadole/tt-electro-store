@@ -9,19 +9,17 @@
 .nav-scrolled { background: rgba(255,255,255,0.97); border-color: #e2e8f0; }
 .dark .nav-scrolled { background: hsl(222,47%,8%); border-color: rgba(255,255,255,0.09); }
 
-/* ── Logo ─────────────────────────────────────────────────────────────────── */
-.nav-logo-icon {
-  background: linear-gradient(135deg,rgba(37,99,235,0.12) 0%,rgba(6,182,212,0.10) 100%);
-  border: 1px solid rgba(37,99,235,0.18);
+/* ── Logo images ──────────────────────────────────────────────────────────── */
+/* Light mode: show the real dark-on-transparent logo as-is                    */
+/* Dark mode / transparent hero: invert to white so it pops on dark background */
+.logo-invert {
+  filter: brightness(0) invert(1);
 }
-.dark .nav-logo-icon {
-  background: linear-gradient(135deg,rgba(37,99,235,0.20) 0%,rgba(6,182,212,0.15) 100%);
-  border-color: rgba(59,130,246,0.25);
+/* Smooth scale on hover */
+.logo-link:hover .logo-full,
+.logo-link:hover .logo-icon {
+  transform: scale(1.03);
 }
-.nav-wordmark-main { color: #0f172a; }
-.dark .nav-wordmark-main { color: #f1f5f9; }
-.nav-wordmark-sub { color: #64748b; }
-.dark .nav-wordmark-sub { color: #94a3b8; }
 
 /* ── Desktop nav links ────────────────────────────────────────────────────── */
 .nav-link { color: #475569; }
