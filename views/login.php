@@ -231,7 +231,9 @@ function loginForm(){
       this.error=''; this.loading=true;
       try{
         await apiFetch('/api/auth/login',{method:'POST',body:JSON.stringify({email:this.email,password:this.password})});
-        window.location='/dashboard';
+        const params=new URLSearchParams(window.location.search);
+        const redir=params.get('redirect');
+        window.location=(redir&&redir.startsWith('/'))?redir:'/dashboard';
       }catch(e){this.error=e.message;}
       this.loading=false;
     }

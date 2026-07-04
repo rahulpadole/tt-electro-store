@@ -98,6 +98,7 @@
 
   <!-- Global reactive cart/wishlist counts (registered before Alpine boots) -->
   <script>
+    window.__isLoggedIn = <?= isLoggedIn() ? 'true' : 'false' ?>;
     document.addEventListener('alpine:init', () => {
       Alpine.store('counts', {
         cart: <?= (int)$__cartCount ?>,

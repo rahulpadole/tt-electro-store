@@ -209,6 +209,11 @@ async function addToCart(productId, qty = 1) {
 
 let __wishlistBusy = false;
 async function addToWishlist(productId) {
+  if (!window.__isLoggedIn) {
+    showToast('Please log in to add items to your wishlist.', 'error');
+    setTimeout(() => { window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname); }, 900);
+    return;
+  }
   if (__wishlistBusy) return;
   __wishlistBusy = true;
   try {

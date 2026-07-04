@@ -3,6 +3,7 @@ declare(strict_types=1);
 requireAdmin();
 
 $om = new OrderModel();
+$um = new UserModel();
 $id = (int)($_GET['id'] ?? 0);
 $order = $om->findById($id);
 if (!$order) jsonError('Order not found', 404);
@@ -28,6 +29,13 @@ if (isPost()) {
             'awb_number'       => $result['awb_number'],
             'delivery_status'  => $result['status'] ?? 'Manifested',
         ]);
+
+        // Fire shipment-created notification
+        if ($updated) {
+            $user = $order['user_id'] ? $um->findById((int)$order['user_id']) : null;
+            notifyDelhiveryUpdate($updated, $user ?: null, true);
+        }
+
         jsonSuccess($updated, 'Delhivery shipment created');
     }
 
@@ -39,10 +47,25 @@ if (isPost()) {
             jsonError($result['error'] ?? 'Failed to fetch tracking status', 502);
         }
 
+        $prevStatus = $order['delivery_status'] ?? '';
+        $newStatus  = $result['status'] ?? $prevStatus;
+
         $updated = $om->updateDelhivery($id, [
-            'delivery_status'        => $result['status'] ?? $order['delivery_status'],
+            'delivery_status'        => $newStatus,
             'expected_delivery_date' => $result['expected_delivery_date'] ?? $order['expected_delivery_date'],
         ]);
+
+        // Fire notification only if delivery status changed
+        if ($updated && $newStatus !== $prevStatus) {
+            $user = $order['user_id'] ? $um->findById((int)$order['user_id']) : null;
+            notifyDelhiveryUpdate($updated, $user ?: null, false);
+
+            // Also update order status to 'delivered' when Delhivery confirms delivery
+            if (in_array(strtolower($newStatus), ['delivered', 'rto delivered'], true)) {
+                $om->updateStatus($id, 'delivered');
+            }
+        }
+
         jsonSuccess($updated, 'Tracking status refreshed');
     }
 

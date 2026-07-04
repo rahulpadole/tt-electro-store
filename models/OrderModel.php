@@ -25,6 +25,29 @@ class OrderModel {
         return $row;
     }
 
+    public function findByAwb(string $awb): ?array {
+        $st = $this->db->prepare('SELECT * FROM orders WHERE awb_number=?');
+        $st->execute([$awb]);
+        $row = $st->fetch();
+        if (!$row) return null;
+        $row = normalizeOrder($row);
+        $row['items'] = $this->getItems((int)$row['id']);
+        return $row;
+    }
+
+    public function getActiveShipments(): array {
+        $st = $this->db->prepare(
+            "SELECT * FROM orders
+             WHERE delivery_partner='Delhivery'
+               AND awb_number IS NOT NULL
+               AND awb_number != ''
+               AND status NOT IN ('delivered','cancelled')
+             ORDER BY created_at DESC"
+        );
+        $st->execute();
+        return array_map('normalizeOrder', $st->fetchAll());
+    }
+
     public function getForUser(int $userId): array {
         $st = $this->db->prepare('SELECT * FROM orders WHERE user_id=? ORDER BY created_at DESC');
         $st->execute([$userId]);

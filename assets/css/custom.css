@@ -1,5 +1,16 @@
 /* TT Electro Store — Custom Styles */
 
+/* ── Navbar scrolled state (light/dark) ─────────────────────────────────── */
+.nav-scrolled {
+  background: rgba(255,255,255,0.97);
+  border-color: #e2e8f0;
+}
+.dark .nav-scrolled {
+  background: hsl(222,47%,8%);
+  border-color: rgba(255,255,255,0.08);
+}
+
+
 /* ── Base ───────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
@@ -260,6 +271,116 @@ body { background-color: #f8fafc; color: #0f172a; }
 .section-title { font-size: 1.5rem; font-weight: 700; color: #0f172a; }
 .dark .section-title { color: #f1f5f9; }
 .section-subtitle { font-size: .875rem; color: #64748b; margin-top: .25rem; }
-.dark .section-subtitle { color: #64748b; }
+.dark .section-subtitle { color: #94a3b8; }
 
 .badge { display:inline-flex; align-items:center; gap:.3rem; padding:.2rem .65rem; border-radius:9999px; font-size:.75rem; font-weight:600; }
+
+/* ── Responsive: Mobile first improvements ──────────────────────────── */
+@media (max-width: 480px) {
+  .max-w-7xl { padding-left: 1rem; padding-right: 1rem; }
+  .hero-gradient { min-height: 480px; }
+  .product-card img { height: 10rem; }
+  .text-4xl { font-size: 1.75rem !important; }
+  .text-5xl { font-size: 2rem !important; }
+  .text-6xl { font-size: 2.25rem !important; }
+}
+
+/* ── Navbar: ensure mobile menu text is always visible ────────────── */
+@media (max-width: 1023px) {
+  #main-nav .mobile-link {
+    color: #475569;
+  }
+  .dark #main-nav .mobile-link {
+    color: #cbd5e1;
+  }
+}
+
+/* ── Dark mode: ensure body background is applied ─────────────────── */
+.dark body {
+  background-color: hsl(222, 47%, 6%);
+  color: #e2e8f0;
+}
+
+/* ── Navbar icon buttons: dark mode hover ─────────────────────────── */
+.dark .nav-icon-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.nav-icon-btn {
+  color: #64748b;
+  transition: background 0.15s, color 0.15s;
+  border-radius: 0.75rem;
+  padding: 0.625rem;
+}
+.dark .nav-icon-btn {
+  color: #94a3b8;
+}
+.nav-icon-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ── Cards: responsive grid fixes ────────────────────────────────── */
+@media (max-width: 640px) {
+  .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-card { border-radius: 0.875rem; }
+}
+
+/* ── Table responsive ─────────────────────────────────────────────── */
+.responsive-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0.75rem;
+}
+.responsive-table-wrap table {
+  min-width: 600px;
+}
+
+/* ── Form inputs: full-width on mobile ───────────────────────────── */
+@media (max-width: 640px) {
+  .input-base, .input-field { font-size: 16px; }  /* prevents iOS zoom */
+}
+
+/* ── Footer: responsive stack ────────────────────────────────────── */
+@media (max-width: 640px) {
+  footer .grid { gap: 2rem; }
+}
+
+/* ── Toast: responsive ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  .toast {
+    max-width: 100%;
+  }
+}
+
+/* ── Print styles ─────────────────────────────────────────────────── */
+@media print {
+  nav, footer, .toast-container, .fixed { display: none !important; }
+  body { background: white !important; color: black !important; }
+}
+
+/* ── Accessibility: focus visible ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.dark :focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* ── WhatsApp button: ensure it doesn't overlap content on mobile ── */
+@media (max-width: 480px) {
+  .whatsapp-float {
+    bottom: 1rem;
+    left: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

@@ -5,7 +5,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
      class="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md"
      :class="navTransparent
        ? 'bg-transparent border-b border-transparent shadow-none'
-       : 'bg-white/95 dark:bg-[hsl(222,47%,8%)]/98 border-b border-slate-200 dark:border-white/8 shadow-sm'"
+       : 'nav-scrolled border-b shadow-sm'"
      x-data="{
        mobileOpen: false,
        scrolled: false,
@@ -79,7 +79,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
 
       <!-- Theme toggle -->
       <button @click="toggleTheme()"
-              :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
+              :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'nav-icon-btn'"
               class="p-2.5 rounded-xl transition-all duration-200" title="Toggle theme">
         <i x-show="isDark"  class="fa-solid fa-sun text-sm" x-cloak></i>
         <i x-show="!isDark" class="fa-solid fa-moon text-sm" x-cloak></i>
@@ -87,7 +87,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
 
       <!-- Wishlist -->
       <a href="/wishlist"
-         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
+         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'nav-icon-btn'"
          class="relative p-2.5 rounded-xl transition-all duration-200" title="Wishlist">
         <i class="fa-regular fa-heart text-sm"></i>
         <span id="wishlistBadge" x-show="$store.counts.wishlist > 0" x-text="$store.counts.wishlist" x-cloak
@@ -96,7 +96,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
 
       <!-- Cart -->
       <a href="/cart"
-         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
+         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'nav-icon-btn'"
          class="relative p-2.5 rounded-xl transition-all duration-200" title="Cart">
         <i class="fa-solid fa-bag-shopping text-sm"></i>
         <span id="cartBadge" x-show="$store.counts.cart > 0" x-text="$store.counts.cart" x-cloak
@@ -106,7 +106,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
       <!-- Notifications -->
       <?php if (isLoggedIn()): ?>
       <a href="/notifications"
-         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
+         :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'nav-icon-btn'"
          class="relative p-2.5 rounded-xl transition-all duration-200" title="Notifications">
         <i class="fa-regular fa-bell text-sm"></i>
         <?php
@@ -172,7 +172,7 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
 
       <!-- Mobile menu toggle -->
       <button @click="mobileOpen=!mobileOpen"
-              :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/8'"
+              :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'nav-icon-btn'"
               class="lg:hidden p-2.5 rounded-xl transition-all duration-200 ml-0.5">
         <i x-show="!mobileOpen" class="fa-solid fa-bars text-base"></i>
         <i x-show="mobileOpen"  class="fa-solid fa-xmark text-base" x-cloak></i>

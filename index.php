@@ -168,6 +168,9 @@ if (str_starts_with($uri, '/api/')) {
         $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/orders/delhivery.php'; exit;
     }
 
+    // Delhivery webhook (public, secured by shared secret internally)
+    if ($apiPath === '/delhivery/webhook')      { require __DIR__ . '/api/delhivery-webhook.php'; exit; }
+
     // Health
     if ($apiPath === '/healthz')                { jsonSuccess(['status' => 'ok']); }
 
