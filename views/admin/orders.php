@@ -21,6 +21,7 @@ $statusColors = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','d
         <th class="px-4 py-3 text-right">Total</th>
         <th class="px-4 py-3 text-center">Payment</th>
         <th class="px-4 py-3 text-center">Status</th>
+        <th class="px-4 py-3 text-center">Delhivery</th>
         <th class="px-4 py-3 text-center">Actions</th>
       </tr></thead>
       <tbody>
@@ -39,6 +40,15 @@ $statusColors = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','d
               <option value="<?= $st ?>" <?= $o['status']===$st?'selected':'' ?>><?= ucfirst($st) ?></option>
               <?php endforeach; ?>
             </select>
+          </td>
+          <td class="px-4 py-3 text-center" id="delhivery-cell-<?= $o['id'] ?>">
+            <?php if(!empty($o['awb_number'])): ?>
+              <p class="text-gray-200 font-mono text-xs">AWB: <?= clean($o['awb_number']) ?></p>
+              <p class="text-gray-500 text-[11px] mb-1"><?= clean($o['delivery_status'] ?? '—') ?></p>
+              <button onclick="refreshDelhivery(<?= $o['id'] ?>)" class="text-blue-400 hover:text-blue-300 text-[11px] px-2 py-0.5 rounded border border-blue-500/20 hover:bg-blue-500/10 transition-all">Refresh</button>
+            <?php else: ?>
+              <button onclick="createDelhiveryShipment(<?= $o['id'] ?>)" class="text-purple-400 hover:text-purple-300 text-xs px-2 py-1 rounded border border-purple-500/20 hover:bg-purple-500/10 transition-all">Ship via Delhivery</button>
+            <?php endif; ?>
           </td>
           <td class="px-4 py-3 text-center">
             <a href="/orders/<?= $o['id'] ?>" target="_blank" class="text-blue-400 hover:text-blue-300 text-xs px-2 py-1 rounded border border-blue-500/20 hover:bg-blue-500/10 transition-all">View</a>
@@ -61,5 +71,34 @@ $statusColors = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','d
 <script>
 async function updateOrderStatus(id, status) {
   try { await apiFetch(`/api/orders/${id}`, { method:'PATCH', body:JSON.stringify({status}) }); showToast('Status updated!','success'); } catch(e) { showToast(e.message,'error'); }
+}
+
+function renderDelhiveryCell(order) {
+  const cell = document.getElementById(`delhivery-cell-${order.id}`);
+  if (!cell) return;
+  if (order.awb_number) {
+    cell.innerHTML = `
+      <p class="text-gray-200 font-mono text-xs">AWB: ${order.awb_number}</p>
+      <p class="text-gray-500 text-[11px] mb-1">${order.delivery_status || '—'}</p>
+      <button onclick="refreshDelhivery(${order.id})" class="text-blue-400 hover:text-blue-300 text-[11px] px-2 py-0.5 rounded border border-blue-500/20 hover:bg-blue-500/10 transition-all">Refresh</button>`;
+  } else {
+    cell.innerHTML = `<button onclick="createDelhiveryShipment(${order.id})" class="text-purple-400 hover:text-purple-300 text-xs px-2 py-1 rounded border border-purple-500/20 hover:bg-purple-500/10 transition-all">Ship via Delhivery</button>`;
+  }
+}
+
+async function createDelhiveryShipment(id) {
+  try {
+    const d = await apiFetch(`/api/admin/orders/${id}/delhivery`, { method:'POST', body: JSON.stringify({ action:'create' }) });
+    renderDelhiveryCell(d.data);
+    showToast('Delhivery shipment created! AWB: ' + d.data.awb_number, 'success');
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+async function refreshDelhivery(id) {
+  try {
+    const d = await apiFetch(`/api/admin/orders/${id}/delhivery`, { method:'POST', body: JSON.stringify({ action:'refresh' }) });
+    renderDelhiveryCell(d.data);
+    showToast('Tracking status refreshed', 'success');
+  } catch(e) { showToast(e.message, 'error'); }
 }
 </script>

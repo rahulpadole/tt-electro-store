@@ -44,3 +44,9 @@ define('WHATSAPP_NUMBER', getenv('WHATSAPP_NUMBER') ?: '919876543210');
 define('GST_RATE',        18);
 define('SHIPPING_CHARGE', 60);
 define('FREE_SHIPPING_ABOVE', 999);
+
+// Delhivery courier integration (optional — guarded when not configured)
+define('DELHIVERY_API_KEY',        getenv('DELHIVERY_API_KEY') ?: '');
+define('DELHIVERY_API_BASE',       getenv('DELHIVERY_STAGING') ? 'https://staging-express.delhivery.com' : 'https://track.delhivery.com');
+define('DELHIVERY_PICKUP_NAME',    getenv('DELHIVERY_PICKUP_NAME') ?: 'TT Electro Store');
+define('DELHIVERY_PICKUP_PINCODE', getenv('DELHIVERY_PICKUP_PINCODE') ?: '444601');

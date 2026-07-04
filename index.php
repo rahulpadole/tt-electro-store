@@ -164,6 +164,9 @@ if (str_starts_with($uri, '/api/')) {
     if ($apiPath === '/admin/print3d-requests') { require __DIR__ . '/api/admin/print3d-requests.php'; exit; }
     if ($apiPath === '/admin/inventory')        { require __DIR__ . '/api/admin/inventory.php'; exit; }
     if ($apiPath === '/admin/reviews')          { require __DIR__ . '/api/admin/reviews.php'; exit; }
+    if (preg_match('#^/admin/orders/(\d+)/delhivery$#', $apiPath, $m)) {
+        $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/orders/delhivery.php'; exit;
+    }
 
     // Health
     if ($apiPath === '/healthz')                { jsonSuccess(['status' => 'ok']); }
@@ -188,6 +191,8 @@ function render(string $view, array $data = []): void {
     extract($data);
     $csrfToken = generateCsrfToken();
     $currentUser = getCurrentUser();
+    $__cartCount = (new CartModel())->count(getCurrentUserId());
+    $__wishlistCount = (new WishlistModel())->count(getCurrentUserId());
     require __DIR__ . '/views/layout/header.php';
     require __DIR__ . "/views/{$view}.php";
     require __DIR__ . '/views/layout/footer.php';

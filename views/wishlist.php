@@ -30,7 +30,7 @@ $items = $wm->getForUser(getCurrentUserId());
     <div class="group relative rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 hover:border-rose-300 dark:hover:border-rose-500/30 overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-500/8 flex flex-col">
       <a href="/products/<?= $item['product_id'] ?>" class="block relative overflow-hidden bg-slate-50 dark:bg-[hsl(222,47%,13%)]">
         <?php if($item['thumbnail']): ?>
-        <img src="<?= clean($item['thumbnail']) ?>" alt="<?= clean($item['name']) ?>"
+        <img src="<?= clean($item['thumbnail']) ?>" alt="<?= clean($item['name']) ?>" loading="lazy" decoding="async"
              class="w-full h-44 object-cover group-hover:scale-[1.04] transition-transform duration-500">
         <?php else: ?>
         <div class="w-full h-44 flex items-center justify-center">
@@ -67,11 +67,17 @@ $items = $wm->getForUser(getCurrentUserId());
   <?php endif; ?>
 </div>
 <script>
+const __wishlistItemBusy = new Set();
 async function removeWishlist(productId, btn) {
+  if(__wishlistItemBusy.has(productId)) return;
+  __wishlistItemBusy.add(productId);
   try {
     await apiFetch(`/api/wishlist/${productId}`, { method: 'DELETE' });
     btn.closest('.group').remove();
+    Alpine.store('counts').wishlist = Math.max(0, Alpine.store('counts').wishlist - 1);
     showToast('Removed from wishlist', 'success');
+    if (document.querySelectorAll('.group').length === 0) location.reload();
   } catch(e) { showToast(e.message, 'error'); }
+  __wishlistItemBusy.delete(productId);
 }
 </script>

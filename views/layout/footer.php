@@ -184,7 +184,10 @@ async function apiFetch(url, opts = {}) {
   return data;
 }
 
+let __cartBusy = false;
 async function addToCart(productId, qty = 1) {
+  if (__cartBusy) return;
+  __cartBusy = true;
   try {
     await apiFetch('/api/cart/', {
       method: 'POST',
@@ -195,32 +198,32 @@ async function addToCart(productId, qty = 1) {
     });
 
     showToast('Added to cart!', 'success');
-
-    const badge = document.querySelector('#cartBadge');
-    if (badge) {
-      badge.textContent = parseInt(badge.textContent || 0) + qty;
-    }
+    Alpine.store('counts').cart += qty;
 
   } catch (e) {
     showToast(e.message, 'error');
+  } finally {
+    __cartBusy = false;
   }
 }
 
+let __wishlistBusy = false;
 async function addToWishlist(productId) {
+  if (__wishlistBusy) return;
+  __wishlistBusy = true;
   try {
     await apiFetch('/api/wishlist/', {
-        method: 'POST',
-        body: JSON.stringify({
-            product_id: productId
-            
-        })
-        
+      method: 'POST',
+      body: JSON.stringify({ product_id: productId })
     });
 
     showToast('Added to wishlist!', 'success');
+    Alpine.store('counts').wishlist += 1;
 
   } catch (e) {
     showToast(e.message, 'error');
+  } finally {
+    __wishlistBusy = false;
   }
 }
 </script>

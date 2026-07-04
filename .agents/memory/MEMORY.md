@@ -7,3 +7,4 @@
 - [Order + Stock Integrity](order-stock-integrity.md) — OrderModel::create() wraps everything in a DB transaction with FOR UPDATE stock check + decrement; throws RuntimeException on insufficient stock caught by api/orders/index.php.
 - [Shipping Constants](shipping-constants.md) — FREE_SHIPPING_ABOVE=999 and SHIPPING_CHARGE=60 defined in config/config.php; views must use these constants, not hardcoded values.
 - [Route Auth Guards](route-auth-guards.md) — /checkout and /wishlist require auth=true in routes array; OTP validation requires strlen===6 + ctype_digit, not strlen<4.
+- [Validator::in() strict type bug](validator-strict-in-check.md) — strict in_array() against a string-typed $allowed array silently rejects valid JSON-decoded ints; caused review submissions to fail.

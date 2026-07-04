@@ -103,4 +103,33 @@ addColumnIfMissing($db, 'orders', 'payment_status',      "ENUM('pending','paid',
 addColumnIfMissing($db, 'orders', 'razorpay_order_id',   "VARCHAR(255) DEFAULT NULL AFTER `payment_status`");
 addColumnIfMissing($db, 'orders', 'razorpay_payment_id', "VARCHAR(255) DEFAULT NULL AFTER `razorpay_order_id`");
 
+// ── Delhivery shipping integration columns ────────────────────────────────
+addColumnIfMissing($db, 'orders', 'delivery_partner',        "VARCHAR(50) DEFAULT NULL AFTER `razorpay_payment_id`");
+addColumnIfMissing($db, 'orders', 'awb_number',               "VARCHAR(100) DEFAULT NULL AFTER `delivery_partner`");
+addColumnIfMissing($db, 'orders', 'delivery_status',          "VARCHAR(100) DEFAULT NULL AFTER `awb_number`");
+addColumnIfMissing($db, 'orders', 'expected_delivery_date',   "DATE DEFAULT NULL AFTER `delivery_status`");
+
+// ── Helper: add index if it doesn't exist ─────────────────────────────────
+function addIndexIfMissing(PDO $db, string $table, string $indexName, string $columns): void {
+    $st = $db->prepare(
+        'SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS
+         WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND INDEX_NAME = ?'
+    );
+    $st->execute([$table, $indexName]);
+    if ((int)$st->fetchColumn() === 0) {
+        $db->exec("ALTER TABLE `{$table}` ADD INDEX `{$indexName}` ({$columns})");
+        echo "[migrate] + Added index `{$indexName}` on `{$table}`({$columns})\n";
+    } else {
+        echo "[migrate] ✓ Index `{$indexName}` on `{$table}` already exists\n";
+    }
+}
+
+// ── Performance indexes (only ones not already covered by schema.sql) ─────
+addIndexIfMissing($db, 'orders',       'orders_status_idx',         '`status`');
+addIndexIfMissing($db, 'orders',       'orders_awb_idx',            '`awb_number`');
+addIndexIfMissing($db, 'order_items',  'order_items_product_id_idx','`product_id`');
+addIndexIfMissing($db, 'products',     'products_is_active_idx',    '`is_active`');
+addIndexIfMissing($db, 'wishlist',     'wishlist_user_id_idx',      '`user_id`');
+addIndexIfMissing($db, 'reviews',      'reviews_product_id_idx',    '`product_id`');
+
 echo "[migrate] ✅ All migrations complete.\n";

@@ -101,7 +101,7 @@ $coupons    = array_values(array_filter($allCoupons, fn($c) => (int)$c['is_activ
       <?php foreach($offers as $offer): ?>
       <div class="rounded-2xl bg-[hsl(222,47%,10%)] border border-white/5 overflow-hidden">
         <?php if($offer['image']): ?>
-        <img src="<?= clean($offer['image']) ?>" alt="<?= clean($offer['title']) ?>" class="w-full h-36 object-cover">
+        <img src="<?= clean($offer['image']) ?>" alt="<?= clean($offer['title']) ?>" loading="lazy" decoding="async" class="w-full h-36 object-cover">
         <?php endif; ?>
         <div class="p-4">
           <div class="flex items-center gap-2 mb-2">

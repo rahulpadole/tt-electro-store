@@ -90,11 +90,8 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
          :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
          class="relative p-2.5 rounded-xl transition-all duration-200" title="Wishlist">
         <i class="fa-regular fa-heart text-sm"></i>
-        <?php
-        $wCount = (new WishlistModel())->count(getCurrentUserId());
-        if ($wCount > 0): ?>
-        <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-rose-500 rounded-full text-[10px] flex items-center justify-center text-white font-bold leading-none"><?= $wCount ?></span>
-        <?php endif; ?>
+        <span id="wishlistBadge" x-show="$store.counts.wishlist > 0" x-text="$store.counts.wishlist" x-cloak
+              class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-rose-500 rounded-full text-[10px] flex items-center justify-center text-white font-bold leading-none"></span>
       </a>
 
       <!-- Cart -->
@@ -102,11 +99,8 @@ $isHome = (rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') =
          :class="navTransparent ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/8'"
          class="relative p-2.5 rounded-xl transition-all duration-200" title="Cart">
         <i class="fa-solid fa-bag-shopping text-sm"></i>
-        <?php
-        $cartCount = (new CartModel())->count(getCurrentUserId());
-        if ($cartCount > 0): ?>
-        <span id="cartBadge" class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-blue-600 rounded-full text-[10px] flex items-center justify-center text-white font-bold leading-none"><?= $cartCount ?></span>
-        <?php endif; ?>
+        <span id="cartBadge" x-show="$store.counts.cart > 0" x-text="$store.counts.cart" x-cloak
+              class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-blue-600 rounded-full text-[10px] flex items-center justify-center text-white font-bold leading-none"></span>
       </a>
 
       <!-- Notifications -->

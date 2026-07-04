@@ -314,7 +314,7 @@ $_fsEndTime = !empty($_fsEnds) ? (int)min(array_map('strtotime', $_fsEnds)) : 0;
     <a href="/diy-kits" class="group flex flex-col rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 hover:border-purple-400 dark:hover:border-purple-500/40 overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-100 dark:hover:shadow-purple-500/8">
       <?php if($kit['thumbnail']): ?>
       <div class="h-48 overflow-hidden bg-slate-50 dark:bg-[hsl(222,47%,13%)]">
-        <img src="<?= clean($kit['thumbnail']) ?>" alt="<?= clean($kit['name']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <img src="<?= clean($kit['thumbnail']) ?>" alt="<?= clean($kit['name']) ?>" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
       </div>
       <?php else: ?>
       <div class="h-48 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 flex items-center justify-center">
@@ -392,7 +392,7 @@ $_fsEndTime = !empty($_fsEnds) ? (int)min(array_map('strtotime', $_fsEnds)) : 0;
          class="group flex flex-col rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 hover:border-blue-300 dark:hover:border-blue-500/30 overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-50 dark:hover:shadow-blue-500/8">
         <?php if($b['thumbnail']): ?>
         <div class="h-48 overflow-hidden bg-slate-100 dark:bg-[hsl(222,47%,13%)]">
-          <img src="<?= clean($b['thumbnail']) ?>" alt="<?= clean($b['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <img src="<?= clean($b['thumbnail']) ?>" alt="<?= clean($b['title']) ?>" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
         </div>
         <?php else: ?>
         <div class="h-48 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 flex items-center justify-center">

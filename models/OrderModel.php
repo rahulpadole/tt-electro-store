@@ -153,6 +153,37 @@ class OrderModel {
         return $this->findById($id);
     }
 
+    public function updateDelhivery(int $id, array $data): ?array {
+        $st = $this->db->prepare('SELECT status_timeline FROM orders WHERE id=?');
+        $st->execute([$id]);
+        $row = $st->fetch();
+        if (!$row) return null;
+
+        $timeline = json_decode($row['status_timeline'] ?? '[]', true) ?: [];
+        $fields = [];
+        $values = [];
+
+        foreach (['delivery_partner', 'awb_number', 'delivery_status', 'expected_delivery_date'] as $f) {
+            if (array_key_exists($f, $data)) {
+                $fields[] = "`{$f}`=?";
+                $values[] = $data[$f];
+            }
+        }
+        if (empty($fields)) return $this->findById($id);
+
+        if (!empty($data['awb_number']) && empty($row['awb_number'] ?? null)) {
+            $timeline[] = ['status' => 'shipped', 'time' => date('c'), 'label' => 'Shipped via Delhivery (AWB: ' . $data['awb_number'] . ')'];
+            $fields[] = "`status`='shipped'";
+            $fields[] = "`status_timeline`=?";
+            $values[] = json_encode($timeline);
+        }
+
+        $values[] = $id;
+        $sql = 'UPDATE orders SET ' . implode(',', $fields) . ', updated_at=NOW() WHERE id=?';
+        $this->db->prepare($sql)->execute($values);
+        return $this->findById($id);
+    }
+
     public function all(int $limit = 50, int $offset = 0): array {
         $st = $this->db->prepare(
             'SELECT o.*,u.name as user_name,u.email as user_email

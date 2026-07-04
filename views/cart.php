@@ -37,11 +37,11 @@ $amountLeft = FREE_SHIPPING_ABOVE - $subtotal;
       <?php foreach($items as $item):
         $price = (float)(($item['is_flash_sale']&&$item['flash_sale_price'])?$item['flash_sale_price']:$item['price']);
       ?>
-      <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 shadow-sm hover:shadow-md dark:hover:shadow-none transition-all" id="cart-item-<?= $item['id'] ?>">
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 shadow-sm hover:shadow-md dark:hover:shadow-none transition-all" id="cart-item-<?= $item['id'] ?>" data-price="<?= $price ?>">
         <!-- Image -->
         <a href="/products/<?= $item['product_id'] ?>" class="flex-shrink-0">
           <?php if($item['thumbnail']): ?>
-          <img src="<?= clean($item['thumbnail']) ?>" alt="<?= clean($item['name']) ?>"
+          <img src="<?= clean($item['thumbnail']) ?>" alt="<?= clean($item['name']) ?>" loading="lazy"
                class="w-20 h-20 rounded-xl object-cover bg-slate-100 dark:bg-[hsl(222,47%,14%)]">
           <?php else: ?>
           <div class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-[hsl(222,47%,14%)] flex items-center justify-center">
@@ -73,7 +73,7 @@ $amountLeft = FREE_SHIPPING_ABOVE - $subtotal;
 
         <!-- Line total + remove -->
         <div class="text-right flex-shrink-0 min-w-[90px]">
-          <p class="font-bold text-slate-900 dark:text-white">₹<?= number_format($price*(int)$item['quantity'],0) ?></p>
+          <p class="font-bold text-slate-900 dark:text-white" id="line-total-<?= $item['id'] ?>">₹<?= number_format($price*(int)$item['quantity'],0) ?></p>
           <button onclick="removeItem(<?= $item['id'] ?>)"
                   class="text-xs text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 mt-1.5 transition-colors flex items-center gap-1 ml-auto">
             <i class="fa-solid fa-trash-can text-[10px]"></i> Remove
@@ -125,17 +125,14 @@ $amountLeft = FREE_SHIPPING_ABOVE - $subtotal;
             <span class="text-slate-500 dark:text-slate-400 flex items-center gap-1"><i class="fa-solid fa-truck text-xs"></i> Shipping</span>
             <span x-text="shipping===0?'FREE':'₹'+shipping" :class="shipping===0?'text-green-600 dark:text-green-400 font-semibold':'text-slate-700 dark:text-slate-300'"></span>
           </div>
-          <?php if($shipping === 0): ?>
-          <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20">
+          <div x-show="shipping===0" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20">
             <i class="fa-solid fa-circle-check text-green-500 text-base flex-shrink-0"></i>
             <span class="text-sm font-semibold text-green-700 dark:text-green-400">Congratulations! You got FREE Delivery.</span>
           </div>
-          <?php else: ?>
-          <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-500/8 border border-amber-200 dark:border-amber-500/20">
+          <div x-show="shipping>0" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-500/8 border border-amber-200 dark:border-amber-500/20">
             <i class="fa-solid fa-truck text-amber-500 text-base flex-shrink-0"></i>
-            <span class="text-sm text-amber-700 dark:text-amber-400">Add <strong>₹<?= number_format($amountLeft, 0) ?></strong> more to get <strong>FREE Delivery</strong>.</span>
+            <span class="text-sm text-amber-700 dark:text-amber-400">Add <strong>₹<span x-text="amountLeft.toLocaleString('en-IN',{minimumFractionDigits:0})"></span></strong> more to get <strong>FREE Delivery</strong>.</span>
           </div>
-          <?php endif; ?>
           <div class="flex justify-between font-bold text-base border-t border-slate-200 dark:border-white/8 pt-3 mt-1">
             <span class="text-slate-900 dark:text-white">Total</span>
             <span class="text-blue-600 dark:text-blue-400 text-lg">₹<span x-text="(subtotal-discount+shipping).toLocaleString('en-IN',{minimumFractionDigits:0})"></span></span>
@@ -161,15 +158,20 @@ $amountLeft = FREE_SHIPPING_ABOVE - $subtotal;
 </div>
 
 <script>
+const FREE_SHIPPING_ABOVE = <?= FREE_SHIPPING_ABOVE ?>;
+const SHIPPING_CHARGE = <?= SHIPPING_CHARGE ?>;
+
 function cartPage() {
   return {
     subtotal: <?= $subtotal ?>,
     discount: 0,
-    shipping: <?= $subtotal >= FREE_SHIPPING_ABOVE ? 0 : SHIPPING_CHARGE ?>,
     couponCode: '',
     couponMsg: '',
     couponValid: false,
     couponLoading: false,
+    get shipping() { return this.subtotal >= FREE_SHIPPING_ABOVE ? 0 : SHIPPING_CHARGE; },
+    get amountLeft() { return Math.max(0, FREE_SHIPPING_ABOVE - this.subtotal); },
+    init() { window.__cartAlpine = this; },
     async applyCoupon() {
       if(!this.couponCode.trim()) return;
       this.couponLoading = true;
@@ -185,19 +187,43 @@ function cartPage() {
   }
 }
 
+const __cartItemBusy = new Set();
+
+function recalcCartSubtotal() {
+  let total = 0;
+  document.querySelectorAll('[id^="cart-item-"]').forEach(el => {
+    const price = parseFloat(el.dataset.price || '0');
+    const qty = parseInt(document.getElementById(`qty-${el.id.replace('cart-item-','')}`)?.textContent || '0', 10);
+    total += price * qty;
+    const lineEl = document.getElementById(`line-total-${el.id.replace('cart-item-','')}`);
+    if (lineEl) lineEl.textContent = '₹' + (price * qty).toLocaleString('en-IN', { minimumFractionDigits: 0 });
+  });
+  if (window.__cartAlpine) window.__cartAlpine.subtotal = total;
+}
+
 async function updateQty(itemId, qty) {
   if(qty < 1) { removeItem(itemId); return; }
+  if(__cartItemBusy.has(itemId)) return;
+  __cartItemBusy.add(itemId);
   try {
     await apiFetch(`/api/cart/${itemId}`, { method: 'PATCH', body: JSON.stringify({ quantity: qty }) });
     document.getElementById(`qty-${itemId}`).textContent = qty;
+    recalcCartSubtotal();
   } catch(e) { showToast(e.message, 'error'); }
+  __cartItemBusy.delete(itemId);
 }
 
 async function removeItem(itemId) {
+  if(__cartItemBusy.has(itemId)) return;
+  __cartItemBusy.add(itemId);
   try {
     await apiFetch(`/api/cart/${itemId}`, { method: 'DELETE' });
     document.getElementById(`cart-item-${itemId}`)?.remove();
+    Alpine.store('counts').cart = Math.max(0, Alpine.store('counts').cart - 1);
     showToast('Removed from cart', 'success');
+    if (document.querySelectorAll('[id^="cart-item-"]').length === 0) { location.reload(); return; }
+    recalcCartSubtotal();
   } catch(e) { showToast(e.message, 'error'); }
+  __cartItemBusy.delete(itemId);
 }
 </script>

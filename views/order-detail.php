@@ -82,6 +82,19 @@ $cancellable = in_array($order['status'], ['pending','processing','packed']);
         <?php if (!empty($order['delivery_estimate'] ?? null)): ?>
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Estimated Delivery: <span class="text-green-600 dark:text-green-400"><?= clean($order['delivery_estimate']) ?></span></p>
         <?php endif; ?>
+        <?php if (!empty($order['awb_number'] ?? null)): ?>
+        <div class="mt-4 pt-4 border-t border-slate-100 dark:border-white/8 flex items-center gap-2 flex-wrap text-sm">
+          <i class="fa-solid fa-truck-fast text-purple-500"></i>
+          <span class="text-slate-500 dark:text-slate-400"><?= clean($order['delivery_partner'] ?? 'Delhivery') ?> AWB:</span>
+          <span class="text-slate-800 dark:text-white font-mono font-semibold"><?= clean($order['awb_number']) ?></span>
+          <?php if(!empty($order['delivery_status'])): ?>
+          <span class="ml-auto px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-500/15 text-purple-600 dark:text-purple-400"><?= clean($order['delivery_status']) ?></span>
+          <?php endif; ?>
+        </div>
+        <?php if (!empty($order['expected_delivery_date'] ?? null)): ?>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Expected Delivery: <span class="text-green-600 dark:text-green-400 font-medium"><?= date('M j, Y', strtotime($order['expected_delivery_date'])) ?></span></p>
+        <?php endif; ?>
+        <?php endif; ?>
       </div>
 
       <!-- Items -->

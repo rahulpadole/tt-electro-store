@@ -252,13 +252,11 @@ $rzpKeyId = getenv('RAZORPAY_KEY_ID') ?: '';
           <span class="text-slate-500 dark:text-slate-400 flex items-center gap-1">
             <i class="fa-solid fa-truck text-xs"></i> Shipping
           </span>
-          <span class="<?= $shipping===0?'text-green-600 dark:text-green-400 font-semibold':'text-slate-700 dark:text-slate-300' ?>">
-            <?= $shipping===0?'FREE':'₹'.$shipping ?>
-          </span>
+          <span x-text="shipping===0?'FREE':'₹'+shipping" :class="shipping===0?'text-green-600 dark:text-green-400 font-semibold':'text-slate-700 dark:text-slate-300'"></span>
         </div>
         <div class="flex justify-between font-bold text-base border-t border-slate-200 dark:border-white/8 pt-3 mt-1">
           <span class="text-slate-900 dark:text-white">Total</span>
-          <span class="text-blue-600 dark:text-blue-400 text-lg">₹<span x-text="(<?= $subtotal ?> - couponDiscount + <?= $shipping ?>).toLocaleString('en-IN',{minimumFractionDigits:0})"></span></span>
+          <span class="text-blue-600 dark:text-blue-400 text-lg">₹<span x-text="(subtotal - couponDiscount + shipping).toLocaleString('en-IN',{minimumFractionDigits:0})"></span></span>
         </div>
       </div>
 
@@ -278,11 +276,15 @@ $rzpKeyId = getenv('RAZORPAY_KEY_ID') ?: '';
 </div>
 
 <script>
+const CHECKOUT_FREE_SHIPPING_ABOVE = <?= FREE_SHIPPING_ABOVE ?>;
+const CHECKOUT_SHIPPING_CHARGE = <?= SHIPPING_CHARGE ?>;
+
 function checkoutPage() {
   return {
     step: 1,
     loading: false,
     paymentMethod: 'razorpay',
+    subtotal: <?= $subtotal ?>,
     couponCode: '',
     couponApplied: false,
     couponDiscount: 0,
@@ -294,10 +296,20 @@ function checkoutPage() {
       address1:'', address2:'', city:'', state:'', pincode:''
     },
 
+    get shipping() { return this.subtotal >= CHECKOUT_FREE_SHIPPING_ABOVE ? 0 : CHECKOUT_SHIPPING_CHARGE; },
+
     nextStep() {
       if (this.step === 1) {
         if (!this.form.name || !this.form.phone || !this.form.address1 || !this.form.city || !this.form.state || !this.form.pincode) {
           showToast('Please fill all required fields', 'error');
+          return;
+        }
+        if (!/^[6-9]\d{9}$/.test(this.form.phone.replace(/\D/g, '').slice(-10))) {
+          showToast('Please enter a valid 10-digit phone number', 'error');
+          return;
+        }
+        if (!/^\d{6}$/.test(this.form.pincode.trim())) {
+          showToast('Please enter a valid 6-digit PIN code', 'error');
           return;
         }
       }
@@ -309,10 +321,9 @@ function checkoutPage() {
       if (!this.couponCode.trim()) return;
       this.couponLoading = true;
       try {
-        const subtotal = <?= $subtotal ?>;
         const d = await apiFetch('/api/coupons/validate', {
           method: 'POST',
-          body: JSON.stringify({ code: this.couponCode.trim(), order_amount: subtotal })
+          body: JSON.stringify({ code: this.couponCode.trim(), order_amount: this.subtotal })
         });
         this.couponDiscount = d.data.discount;
         this.couponApplied  = true;
@@ -334,8 +345,8 @@ function checkoutPage() {
     },
 
     _buildOrderData() {
-      const subtotal = <?= $subtotal ?>;
-      const shipping = <?= $shipping ?>;
+      const subtotal = this.subtotal;
+      const shipping = this.shipping;
       const discount = this.couponDiscount;
       const total    = subtotal - discount + shipping;
       return {

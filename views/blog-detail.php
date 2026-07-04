@@ -122,7 +122,7 @@ $related['items'] = array_filter($related['items'],fn($r)=>$r['id']!=$blog['id']
        class="group flex flex-col rounded-2xl bg-white dark:bg-[hsl(222,47%,10%)] border border-slate-200 dark:border-white/6 hover:border-blue-300 dark:hover:border-blue-500/30 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-none">
       <?php if($b['thumbnail']): ?>
       <div class="h-36 overflow-hidden bg-slate-100 dark:bg-[hsl(222,47%,13%)]">
-        <img src="<?= clean($b['thumbnail']) ?>" class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500">
+        <img src="<?= clean($b['thumbnail']) ?>" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500">
       </div>
       <?php else: ?>
       <div class="h-36 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 flex items-center justify-center">

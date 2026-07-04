@@ -71,6 +71,14 @@
       <p class="text-blue-600 dark:text-blue-400 font-mono font-bold text-sm" x-text="order?.tracking_number"></p>
     </div>
 
+    <!-- Delhivery AWB -->
+    <div x-show="order?.awb_number" class="px-5 py-4 border-b border-slate-100 dark:border-white/5">
+      <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wide mb-1" x-text="(order?.delivery_partner || 'Delhivery') + ' AWB Number'"></p>
+      <p class="text-purple-600 dark:text-purple-400 font-mono font-bold text-sm" x-text="order?.awb_number"></p>
+      <p x-show="order?.delivery_status" class="text-xs text-slate-500 dark:text-slate-400 mt-1" x-text="'Status: ' + order?.delivery_status"></p>
+      <p x-show="order?.expected_delivery_date" class="text-xs text-slate-500 dark:text-slate-400 mt-1" x-text="'Expected Delivery: ' + (order?.expected_delivery_date ? new Date(order.expected_delivery_date).toLocaleDateString('en-IN',{year:'numeric',month:'short',day:'numeric'}) : '')"></p>
+    </div>
+
     <!-- Status Timeline -->
     <div x-show="order?.status_timeline?.length" class="px-5 py-5">
       <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-4">Status Timeline</p>

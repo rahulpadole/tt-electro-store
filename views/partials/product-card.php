@@ -9,7 +9,7 @@ $discPct      = ($salePrice && $origPrice > $displayPrice) ? round((1 - $display
   <!-- Image area -->
   <a href="/products/<?= $p['id'] ?>" class="block relative overflow-hidden bg-slate-50 dark:bg-[hsl(222,47%,13%)]">
     <?php if($p['thumbnail']): ?>
-    <img src="<?= clean($p['thumbnail']) ?>" alt="<?= clean($p['name']) ?>"
+    <img src="<?= clean($p['thumbnail']) ?>" alt="<?= clean($p['name']) ?>" loading="lazy" decoding="async" width="400" height="176"
          class="w-full h-44 object-cover group-hover:scale-[1.04] transition-transform duration-500">
     <?php else: ?>
     <div class="w-full h-44 flex items-center justify-center text-slate-300 dark:text-slate-600">

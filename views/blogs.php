@@ -30,7 +30,7 @@ $result   = $bm->all($page,9,$category);
 
       <?php if($b['thumbnail']): ?>
       <div class="h-48 overflow-hidden bg-slate-100 dark:bg-[hsl(222,47%,13%)]">
-        <img src="<?= clean($b['thumbnail']) ?>" alt="<?= clean($b['title']) ?>"
+        <img src="<?= clean($b['thumbnail']) ?>" alt="<?= clean($b['title']) ?>" loading="lazy" decoding="async"
              class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500">
       </div>
       <?php else: ?>

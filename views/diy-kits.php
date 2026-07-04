@@ -18,7 +18,7 @@ $diffColors = ['beginner'=>'green','intermediate'=>'yellow','advanced'=>'red'];
     ?>
     <div class="group rounded-2xl bg-[hsl(222,47%,10%)] border border-white/5 hover:border-purple-500/20 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/5 flex flex-col">
       <?php if($kit['thumbnail']): ?>
-      <div class="h-52 overflow-hidden"><img src="<?= clean($kit['thumbnail']) ?>" alt="<?= clean($kit['name']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
+      <div class="h-52 overflow-hidden"><img src="<?= clean($kit['thumbnail']) ?>" alt="<?= clean($kit['name']) ?>" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
       <?php else: ?><div class="h-52 bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center text-7xl">🔧</div><?php endif; ?>
       <div class="p-5 flex flex-col flex-1">
         <div class="flex items-center gap-2 mb-3">
