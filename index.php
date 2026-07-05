@@ -168,6 +168,16 @@ if (str_starts_with($uri, '/api/')) {
         $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/orders/delhivery.php'; exit;
     }
 
+    // Admin — notifications (real-time bell)
+    if ($apiPath === '/admin/notifications')             { require __DIR__ . '/api/admin/notifications/index.php'; exit; }
+    if ($apiPath === '/admin/notifications/read-all')    { require __DIR__ . '/api/admin/notifications/read-all.php'; exit; }
+    if (preg_match('#^/admin/notifications/(\d+)/read$#', $apiPath, $m)) {
+        $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/notifications/read.php'; exit;
+    }
+    if (preg_match('#^/admin/notifications/(\d+)$#', $apiPath, $m)) {
+        $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/notifications/show.php'; exit;
+    }
+
     // Returns (customer)
     if ($apiPath === '/returns')                     { require __DIR__ . '/api/returns/index.php'; exit; }
     if (preg_match('#^/returns/(\d+)$#', $apiPath, $m)) {

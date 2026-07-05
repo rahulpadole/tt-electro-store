@@ -10,3 +10,4 @@
 - [Validator::in() strict type bug](validator-strict-in-check.md) — strict in_array() against a string-typed $allowed array silently rejects valid JSON-decoded ints; caused review submissions to fail.
 - [Post-Order Automation](post-order-automation.md) — Notifications + auto-shipment hooked into both order creation APIs; helpers/notifications.php and helpers/ShipmentService.php must be required in bootstrap.php (already done).
 - [Returns System](returns-system.md) — 24h return window enforced via status_timeline delivered entry; returns/return_images tables + ReturnModel + /api/returns + /api/admin/returns all in place.
+- [Notification Bell Pattern](notification-bell-pattern.md) — customer vs admin notifications use fully separate table/model/API/Alpine components; decode JSON `data` after deriving links, not before.

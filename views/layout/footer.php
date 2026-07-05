@@ -184,6 +184,46 @@ async function apiFetch(url, opts = {}) {
   return data;
 }
 
+function customerNotifBell() {
+  return {
+    open: false, unread: 0, items: [], _timer: null,
+    init() {
+      this.fetchData();
+      this._timer = setInterval(() => this.fetchData(), 20000);
+    },
+    async fetchData() {
+      try {
+        const r = await apiFetch('/api/notifications');
+        this.items = r.data;
+        this.unread = this.items.filter(n => !n.is_read).length;
+      } catch (e) { /* silent — never break the storefront on poll failure */ }
+    },
+    toggle() {
+      this.open = !this.open;
+      if (this.open) this.fetchData();
+    },
+    async openNotif(n) {
+      if (!n.is_read) {
+        n.is_read = 1;
+        this.unread = Math.max(0, this.unread - 1);
+        try { await apiFetch(`/api/notifications/${n.id}/read`, { method: 'PATCH' }); } catch (e) {}
+      }
+    },
+    async markAllRead() {
+      this.items.forEach(n => n.is_read = 1);
+      this.unread = 0;
+      try { await apiFetch('/api/notifications/read-all', { method: 'PATCH' }); } catch (e) {}
+    },
+    timeAgo(dateStr) {
+      const s = Math.floor((Date.now() - new Date(dateStr.replace(' ', 'T'))) / 1000);
+      if (s < 60) return 'just now';
+      if (s < 3600) return Math.floor(s / 60) + 'm ago';
+      if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+      return Math.floor(s / 86400) + 'd ago';
+    }
+  };
+}
+
 let __cartBusy = false;
 async function addToCart(productId, qty = 1) {
   if (__cartBusy) return;

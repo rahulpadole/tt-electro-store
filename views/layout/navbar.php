@@ -119,15 +119,37 @@ function navActive(string $href, string $cur): string {
 
       <!-- Notifications (logged-in only) -->
       <?php if (isLoggedIn()): ?>
-      <a href="/notifications" title="Notifications"
-         :class="navTransparent ? 'nav-icon-transparent' : 'nav-icon-btn'"
-         class="relative p-2.5 rounded-xl transition-all duration-200">
-        <i class="fa-regular fa-bell text-sm"></i>
-        <?php $unread = (new NotificationModel())->unreadCount(getCurrentUserId()); ?>
-        <?php if ($unread > 0): ?>
-        <span class="badge-dot bg-red-500"><?= $unread ?></span>
-        <?php endif; ?>
-      </a>
+      <div class="relative" x-data="customerNotifBell()" x-init="init()" @click.outside="open=false">
+        <button @click="toggle()" title="Notifications"
+                :class="navTransparent ? 'nav-icon-transparent' : 'nav-icon-btn'"
+                class="relative p-2.5 rounded-xl transition-all duration-200">
+          <i class="fa-regular fa-bell text-sm"></i>
+          <span x-show="unread > 0" x-cloak x-text="unread > 9 ? '9+' : unread" class="badge-dot bg-red-500"></span>
+        </button>
+        <div x-show="open" x-cloak x-transition
+             class="absolute right-0 mt-2 w-80 max-h-[26rem] overflow-y-auto bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 rounded-xl shadow-2xl z-50">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-white/10 sticky top-0 bg-white dark:bg-slate-900">
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">Notifications</span>
+            <button @click="markAllRead()" x-show="unread > 0" class="text-[11px] text-blue-600 dark:text-blue-400 hover:underline">Mark all read</button>
+          </div>
+          <template x-if="items.length === 0">
+            <p class="text-center text-gray-400 dark:text-slate-500 text-xs py-8">No notifications yet</p>
+          </template>
+          <template x-for="n in items" :key="n.id">
+            <a :href="n.link || '/notifications'" @click="openNotif(n)"
+               class="flex items-start gap-3 px-4 py-3 border-b border-gray-50 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors"
+               :class="!n.is_read ? 'bg-blue-50 dark:bg-blue-500/[0.06]' : ''">
+              <span class="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" :class="!n.is_read ? 'bg-blue-500' : 'bg-transparent'"></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-xs font-medium text-gray-800 dark:text-slate-200 truncate" x-text="n.title"></span>
+                <span class="block text-[11px] text-gray-500 dark:text-slate-500 mt-0.5 line-clamp-2" x-text="n.message"></span>
+                <span class="block text-[10px] text-gray-400 dark:text-slate-600 mt-1" x-text="timeAgo(n.created_at)"></span>
+              </span>
+            </a>
+          </template>
+          <a href="/notifications" class="block text-center text-[11px] text-blue-600 dark:text-blue-400 hover:underline py-2.5 border-t border-gray-100 dark:border-white/10">View all</a>
+        </div>
+      </div>
       <?php endif; ?>
 
       <!-- ── User Area ──────────────────────────────────────────── -->

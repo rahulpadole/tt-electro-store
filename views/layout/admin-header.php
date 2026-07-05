@@ -91,6 +91,39 @@
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> View Store
         </a>
         <div class="h-5 w-px bg-white/10"></div>
+
+        <!-- Notification Bell -->
+        <div class="relative" x-data="adminNotifBell()" x-init="init()" @click.outside="open=false">
+          <button @click="toggle()" class="relative w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-white/8 transition-all">
+            <i class="fa-regular fa-bell text-sm"></i>
+            <span x-show="unread > 0" x-cloak x-text="unread > 9 ? '9+' : unread"
+                  class="absolute -top-1 -right-1 min-w-[16px] h-4 px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center leading-none"></span>
+          </button>
+          <div x-show="open" x-cloak x-transition
+               class="absolute right-0 mt-2 w-80 max-h-[26rem] overflow-y-auto bg-[hsl(222,47%,10%)] border border-white/10 rounded-xl shadow-2xl z-50">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 sticky top-0 bg-[hsl(222,47%,10%)]">
+              <span class="text-sm font-semibold text-white">Notifications</span>
+              <button @click="markAllRead()" x-show="unread > 0" class="text-[11px] text-blue-400 hover:text-blue-300">Mark all read</button>
+            </div>
+            <template x-if="items.length === 0">
+              <p class="text-center text-slate-500 text-xs py-8">No notifications yet</p>
+            </template>
+            <template x-for="n in items" :key="n.id">
+              <a :href="n.link" @click="openNotif(n)"
+                 class="flex items-start gap-3 px-4 py-3 border-b border-white/5 hover:bg-white/[0.04] transition-colors"
+                 :class="!n.is_read ? 'bg-blue-500/[0.06]' : ''">
+                <span class="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" :class="!n.is_read ? 'bg-blue-500' : 'bg-transparent'"></span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-xs font-medium text-slate-200 truncate" x-text="n.title"></span>
+                  <span class="block text-[11px] text-slate-500 mt-0.5 line-clamp-2" x-text="n.message"></span>
+                  <span class="block text-[10px] text-slate-600 mt-1" x-text="timeAgo(n.created_at)"></span>
+                </span>
+              </a>
+            </template>
+            <a href="/admin/notifications" class="block text-center text-[11px] text-blue-400 hover:text-blue-300 py-2.5 border-t border-white/10">View all</a>
+          </div>
+        </div>
+
         <!-- Admin avatar -->
         <div class="flex items-center gap-2 pl-1">
           <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
