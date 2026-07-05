@@ -89,5 +89,14 @@ $discPct      = ($salePrice && $origPrice > $displayPrice) ? round((1 - $display
         <i class="fa-solid fa-cart-plus text-xs mr-1"></i> Add to Cart
       <?php endif; ?>
     </button>
+
+    <!-- Compare toggle -->
+    <button x-data="{ get active() { return $store.compare.has(<?= $p['id'] ?>) } }"
+            @click="$store.compare.toggle(<?= $p['id'] ?>)"
+            :class="active ? 'text-blue-600 dark:text-blue-400 border-blue-300 dark:border-blue-500/40 bg-blue-50 dark:bg-blue-500/10' : 'text-slate-500 dark:text-slate-400 border-slate-200 dark:border-white/8 hover:border-blue-300 dark:hover:border-blue-500/30'"
+            class="mt-2 w-full py-1.5 rounded-lg border text-[11px] font-medium transition-all flex items-center justify-center gap-1.5">
+      <i class="fa-solid fa-scale-balanced text-[10px]"></i>
+      <span x-text="active ? 'Added to Compare' : 'Compare'"></span>
+    </button>
   </div>
 </div>

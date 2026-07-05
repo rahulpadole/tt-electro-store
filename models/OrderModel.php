@@ -221,6 +221,86 @@ class OrderModel {
         return (int)$this->db->query('SELECT COUNT(*) FROM orders')->fetchColumn();
     }
 
+    private function buildFilterWhere(array $filters): array {
+        $where = ['1=1'];
+        $params = [];
+
+        if (!empty($filters['status'])) {
+            $where[] = 'o.status = ?';
+            $params[] = $filters['status'];
+        }
+        if (!empty($filters['payment_method'])) {
+            $where[] = 'o.payment_method = ?';
+            $params[] = $filters['payment_method'];
+        }
+        if (!empty($filters['search'])) {
+            $where[] = '(o.order_number LIKE ? OR u.name LIKE ? OR u.email LIKE ? OR u.phone LIKE ? OR o.awb_number LIKE ?)';
+            $s = '%' . $filters['search'] . '%';
+            array_push($params, $s, $s, $s, $s, $s);
+        }
+        if (!empty($filters['date_from'])) {
+            $where[] = 'DATE(o.created_at) >= ?';
+            $params[] = $filters['date_from'];
+        }
+        if (!empty($filters['date_to'])) {
+            $where[] = 'DATE(o.created_at) <= ?';
+            $params[] = $filters['date_to'];
+        }
+
+        return [implode(' AND ', $where), $params];
+    }
+
+    public function search(array $filters = [], int $limit = 20, int $offset = 0): array {
+        [$whereSql, $params] = $this->buildFilterWhere($filters);
+        $sql = "SELECT o.*,u.name as user_name,u.email as user_email,u.phone as user_phone
+                FROM orders o JOIN users u ON o.user_id=u.id
+                WHERE {$whereSql}
+                ORDER BY o.created_at DESC LIMIT ? OFFSET ?";
+        $st = $this->db->prepare($sql);
+        $i = 1;
+        foreach ($params as $p) { $st->bindValue($i++, $p); }
+        $st->bindValue($i++, $limit, PDO::PARAM_INT);
+        $st->bindValue($i++, $offset, PDO::PARAM_INT);
+        $st->execute();
+        return array_map('normalizeOrder', $st->fetchAll());
+    }
+
+    public function searchCount(array $filters = []): int {
+        [$whereSql, $params] = $this->buildFilterWhere($filters);
+        $sql = "SELECT COUNT(*) FROM orders o JOIN users u ON o.user_id=u.id WHERE {$whereSql}";
+        $st = $this->db->prepare($sql);
+        $st->execute($params);
+        return (int)$st->fetchColumn();
+    }
+
+    public function searchAll(array $filters = []): array {
+        [$whereSql, $params] = $this->buildFilterWhere($filters);
+        $sql = "SELECT o.*,u.name as user_name,u.email as user_email,u.phone as user_phone
+                FROM orders o JOIN users u ON o.user_id=u.id
+                WHERE {$whereSql}
+                ORDER BY o.created_at DESC";
+        $st = $this->db->prepare($sql);
+        $st->execute($params);
+        return array_map('normalizeOrder', $st->fetchAll());
+    }
+
+    public function bulkUpdateStatus(array $ids, string $status): int {
+        if (empty($ids)) return 0;
+        $labels = [
+            'pending'    => 'Order Placed',
+            'processing' => 'Processing',
+            'shipped'    => 'Shipped',
+            'delivered'  => 'Delivered',
+            'cancelled'  => 'Cancelled',
+        ];
+        $updated = 0;
+        foreach ($ids as $id) {
+            $this->updateStatus((int)$id, $status);
+            $updated++;
+        }
+        return $updated;
+    }
+
     public function totalRevenue(): float {
         return (float)$this->db->query("SELECT COALESCE(SUM(total),0) FROM orders WHERE status!='cancelled'")->fetchColumn();
     }
@@ -248,6 +328,47 @@ class OrderModel {
              WHERE o.status!='cancelled'
              GROUP BY c.name ORDER BY total DESC LIMIT 8"
         );
+        return $st->fetchAll();
+    }
+
+    public function todayRevenue(): float {
+        return (float)$this->db->query(
+            "SELECT COALESCE(SUM(total),0) FROM orders WHERE status!='cancelled' AND DATE(created_at)=CURDATE()"
+        )->fetchColumn();
+    }
+
+    public function monthRevenue(): float {
+        return (float)$this->db->query(
+            "SELECT COALESCE(SUM(total),0) FROM orders WHERE status!='cancelled'
+             AND YEAR(created_at)=YEAR(CURDATE()) AND MONTH(created_at)=MONTH(CURDATE())"
+        )->fetchColumn();
+    }
+
+    public function countToday(): int {
+        return (int)$this->db->query("SELECT COUNT(*) FROM orders WHERE DATE(created_at)=CURDATE()")->fetchColumn();
+    }
+
+    public function countByStatus(string $status): int {
+        $st = $this->db->prepare('SELECT COUNT(*) FROM orders WHERE status = ?');
+        $st->execute([$status]);
+        return (int)$st->fetchColumn();
+    }
+
+    public function paymentMethodBreakdown(): array {
+        $st = $this->db->query(
+            "SELECT COALESCE(payment_method,'cod') as method, COUNT(*) as cnt
+             FROM orders GROUP BY payment_method ORDER BY cnt DESC"
+        );
+        return $st->fetchAll();
+    }
+
+    public function recentActivity(int $limit = 8): array {
+        $st = $this->db->prepare(
+            "SELECT o.id, o.order_number, o.status, o.total, o.created_at, u.name as user_name
+             FROM orders o JOIN users u ON o.user_id=u.id
+             ORDER BY o.created_at DESC LIMIT ?"
+        );
+        $st->execute([$limit]);
         return $st->fetchAll();
     }
 

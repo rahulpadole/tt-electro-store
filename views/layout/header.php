@@ -104,6 +104,32 @@
         cart: <?= (int)$__cartCount ?>,
         wishlist: <?= (int)$__wishlistCount ?>
       });
+      let __compareIds = [];
+      try { __compareIds = JSON.parse(localStorage.getItem('compareIds') || '[]'); } catch(e) { __compareIds = []; }
+      Alpine.store('compare', {
+        ids: __compareIds,
+        max: 4,
+        has(id) { return this.ids.includes(id); },
+        toggle(id) {
+          id = parseInt(id);
+          const i = this.ids.indexOf(id);
+          if (i > -1) {
+            this.ids.splice(i, 1);
+          } else {
+            if (this.ids.length >= this.max) {
+              if (window.showToast) showToast(`You can compare up to ${this.max} products at a time`, 'error');
+              return false;
+            }
+            this.ids.push(id);
+          }
+          localStorage.setItem('compareIds', JSON.stringify(this.ids));
+          return true;
+        },
+        clear() {
+          this.ids = [];
+          localStorage.setItem('compareIds', JSON.stringify(this.ids));
+        }
+      });
     });
   </script>
 

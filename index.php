@@ -77,6 +77,7 @@ if (str_starts_with($uri, '/api/')) {
 
     // Wishlist
     if ($apiPath === '/wishlist')               { require __DIR__ . '/api/wishlist/index.php'; exit; }
+    if ($apiPath === '/compare')                { require __DIR__ . '/api/compare.php'; exit; }
     if (preg_match('#^/wishlist/(\d+)$#', $apiPath, $m)) {
         $_GET['product_id'] = $m[1]; require __DIR__ . '/api/wishlist/item.php'; exit;
     }
@@ -161,6 +162,8 @@ if (str_starts_with($uri, '/api/')) {
     // Admin
     if ($apiPath === '/admin/users')            { require __DIR__ . '/api/admin/users.php'; exit; }
     if ($apiPath === '/admin/orders')           { require __DIR__ . '/api/admin/orders.php'; exit; }
+    if ($apiPath === '/admin/orders/export')    { require __DIR__ . '/api/admin/orders/export.php'; exit; }
+    if ($apiPath === '/admin/orders/bulk')      { require __DIR__ . '/api/admin/orders/bulk.php'; exit; }
     if ($apiPath === '/admin/print3d-requests') { require __DIR__ . '/api/admin/print3d-requests.php'; exit; }
     if ($apiPath === '/admin/inventory')        { require __DIR__ . '/api/admin/inventory.php'; exit; }
     if ($apiPath === '/admin/reviews')          { require __DIR__ . '/api/admin/reviews.php'; exit; }
@@ -248,6 +251,7 @@ $routes = [
     '/checkout'       => ['view' => 'checkout',       'auth' => true],
     '/orders'         => ['view' => 'orders',         'auth' => true],
     '/wishlist'       => ['view' => 'wishlist',       'auth' => true],
+    '/compare'        => ['view' => 'compare',        'auth' => false],
     '/blogs'          => ['view' => 'blogs',          'auth' => false],
     '/diy-kits'       => ['view' => 'diy-kits',       'auth' => false],
     '/3d-printing'    => ['view' => 'print3d',        'auth' => false],

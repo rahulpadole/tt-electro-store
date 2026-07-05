@@ -108,6 +108,15 @@ function navActive(string $href, string $cur): string {
               class="badge-dot bg-rose-500"></span>
       </a>
 
+      <!-- Compare -->
+      <a href="/compare" title="Compare"
+         :class="navTransparent ? 'nav-icon-transparent' : 'nav-icon-btn'"
+         class="relative p-2.5 rounded-xl transition-all duration-200">
+        <i class="fa-solid fa-scale-balanced text-sm"></i>
+        <span x-show="$store.compare.ids.length > 0" x-text="$store.compare.ids.length" x-cloak
+              class="badge-dot bg-blue-600"></span>
+      </a>
+
       <!-- Cart -->
       <a href="/cart" title="Cart"
          :class="navTransparent ? 'nav-icon-transparent' : 'nav-icon-btn'"

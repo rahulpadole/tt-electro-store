@@ -194,4 +194,20 @@ $db->exec("CREATE TABLE IF NOT EXISTS `return_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
 echo "[migrate] ✓ Table `return_images` ready\n";
 
+// ── Announcements table ──────────────────────────────────────────────────
+$db->exec("CREATE TABLE IF NOT EXISTS `announcements` (
+  `id`               INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title`            VARCHAR(255) NOT NULL,
+  `message`          TEXT         NOT NULL,
+  `type`             VARCHAR(50)  NOT NULL DEFAULT 'info',
+  `link`             TEXT         DEFAULT NULL,
+  `target_type`      VARCHAR(20)  NOT NULL DEFAULT 'all',
+  `target_user_ids`  TEXT         DEFAULT NULL,
+  `recipient_count`  INT UNSIGNED NOT NULL DEFAULT 0,
+  `created_at`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `announcements_created_idx` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+echo "[migrate] ✓ Table `announcements` ready\n";
+
 echo "[migrate] ✅ All migrations complete.\n";

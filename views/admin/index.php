@@ -1,6 +1,7 @@
 <?php
 $pageTitle = 'Dashboard';
-$om = new OrderModel(); $pm = new ProductModel(); $um = new UserModel(); $nm = new NewsletterModel();
+$om = new OrderModel(); $pm = new ProductModel(); $um = new UserModel(); $nm = new NewsletterModel(); $rm = new ReturnModel();
+$cm = new CouponModel(); $ofm = new OfferModel();
 $totalOrders   = $om->count();
 $totalRevenue  = $om->totalRevenue();
 $totalProducts = $pm->count();
@@ -12,6 +13,19 @@ $revenueByMonth= $om->revenueByMonth();
 $salesByCat    = $om->salesByCategory();
 $lowStock      = $pm->lowStock(5);
 $statusColors  = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','delivered'=>'green','cancelled'=>'red'];
+
+$todayRevenue  = $om->todayRevenue();
+$monthRevenue  = $om->monthRevenue();
+$ordersToday   = $om->countToday();
+$pendingOrders = $om->countByStatus('pending');
+$deliveredOrders = $om->countByStatus('delivered');
+$cancelledOrders = $om->countByStatus('cancelled');
+$totalReturns  = $rm->count();
+$refundedReturns = $rm->countByStatus('refunded');
+$totalCoupons  = count($cm->all());
+$totalOffers   = count($ofm->all());
+$paymentBreakdown = $om->paymentMethodBreakdown();
+$recentActivity = $om->recentActivity(8);
 ?>
 
 <!-- Page header -->
@@ -28,13 +42,13 @@ $statusColors  = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','
 </div>
 
 <!-- Stats Cards -->
-<div class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+<div class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
   <?php
   $stats = [
-    ['Total Revenue',    '₹'.number_format($totalRevenue,0),  'fa-indian-rupee-sign', 'text-emerald-400', 'bg-emerald-500/10', 'border-emerald-500/15', 'All time earnings'],
-    ['Total Orders',     number_format($totalOrders),          'fa-clipboard-list',    'text-blue-400',    'bg-blue-500/10',    'border-blue-500/15',    'Across all statuses'],
-    ['Products',         number_format($totalProducts),        'fa-box',               'text-purple-400',  'bg-purple-500/10',  'border-purple-500/15',  'Active listings'],
-    ['Customers',        number_format($totalUsers),           'fa-users',             'text-cyan-400',    'bg-cyan-500/10',    'border-cyan-500/15',    'Registered users'],
+    ['Today\'s Revenue',  '₹'.number_format($todayRevenue,0),  'fa-indian-rupee-sign', 'text-emerald-400', 'bg-emerald-500/10', 'border-emerald-500/15', 'Since midnight'],
+    ['Monthly Revenue',  '₹'.number_format($monthRevenue,0),   'fa-chart-column',      'text-teal-400',    'bg-teal-500/10',    'border-teal-500/15',    'This calendar month'],
+    ['Orders Today',     number_format($ordersToday),          'fa-cart-shopping',     'text-blue-400',    'bg-blue-500/10',    'border-blue-500/15',    'New orders today'],
+    ['Pending Orders',   number_format($pendingOrders),        'fa-hourglass-half',    'text-yellow-400',  'bg-yellow-500/10',  'border-yellow-500/15',  'Awaiting processing'],
   ];
   foreach($stats as [$label,$val,$icon,$textColor,$bg,$border,$sub]): ?>
   <div class="stat-card border <?= $border ?>">
@@ -46,6 +60,51 @@ $statusColors  = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','
     </div>
     <p class="text-2xl font-bold <?= $textColor ?> leading-none"><?= $val ?></p>
     <p class="text-xs text-slate-500 mt-1.5 font-medium"><?= $label ?></p>
+  </div>
+  <?php endforeach; ?>
+</div>
+
+<div class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+  <?php
+  $stats2 = [
+    ['Total Revenue',    '₹'.number_format($totalRevenue,0),  'fa-sack-dollar',       'text-emerald-400', 'bg-emerald-500/10', 'border-emerald-500/15', 'All time'],
+    ['Total Orders',     number_format($totalOrders),          'fa-clipboard-list',    'text-blue-400',    'bg-blue-500/10',    'border-blue-500/15',    'All statuses'],
+    ['Delivered',        number_format($deliveredOrders),      'fa-truck-fast',        'text-green-400',   'bg-green-500/10',   'border-green-500/15',   'Completed orders'],
+    ['Cancelled',        number_format($cancelledOrders),      'fa-ban',               'text-red-400',     'bg-red-500/10',     'border-red-500/15',     'Cancelled orders'],
+    ['Returns',          number_format($totalReturns),         'fa-rotate-left',       'text-orange-400',  'bg-orange-500/10',  'border-orange-500/15',  'Total return requests'],
+    ['Refunds',          number_format($refundedReturns),      'fa-money-bill-transfer','text-pink-400',   'bg-pink-500/10',    'border-pink-500/15',    'Refunds completed'],
+    ['Products',         number_format($totalProducts),        'fa-box',               'text-purple-400',  'bg-purple-500/10',  'border-purple-500/15',  'Active listings'],
+    ['Customers',        number_format($totalUsers),           'fa-users',             'text-cyan-400',    'bg-cyan-500/10',    'border-cyan-500/15',    'Registered users'],
+  ];
+  foreach($stats2 as [$label,$val,$icon,$textColor,$bg,$border,$sub]): ?>
+  <div class="stat-card border <?= $border ?>">
+    <div class="flex items-start justify-between mb-3">
+      <div class="w-10 h-10 rounded-xl <?= $bg ?> flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid <?= $icon ?> <?= $textColor ?> text-base"></i>
+      </div>
+      <span class="text-xs text-slate-600 font-medium"><?= $sub ?></span>
+    </div>
+    <p class="text-2xl font-bold <?= $textColor ?> leading-none"><?= $val ?></p>
+    <p class="text-xs text-slate-500 mt-1.5 font-medium"><?= $label ?></p>
+  </div>
+  <?php endforeach; ?>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+  <?php foreach([
+    ['Coupons',  $totalCoupons, 'fa-ticket', 'text-fuchsia-400'],
+    ['Offers',   $totalOffers,  'fa-tags',   'text-lime-400'],
+    ['Newsletter Subs', $subscribers, 'fa-envelope', 'text-blue-400'],
+    ['Avg Order Value', $totalOrders>0?'₹'.number_format($totalRevenue/$totalOrders,0):'₹0', 'fa-chart-line', 'text-emerald-400'],
+  ] as [$l,$v,$i,$tc]): ?>
+  <div class="bg-[hsl(222,47%,10%)] border border-white/[0.06] rounded-xl p-4 flex items-center gap-3">
+    <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+      <i class="fa-solid <?= $i ?> <?= $tc ?> text-sm"></i>
+    </div>
+    <div>
+      <p class="text-white font-bold text-sm"><?= is_numeric($v) ? number_format((int)$v) : $v ?></p>
+      <p class="text-slate-500 text-xs"><?= $l ?></p>
+    </div>
   </div>
   <?php endforeach; ?>
 </div>
@@ -73,6 +132,51 @@ $statusColors  = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','
       <p class="text-slate-500 text-xs mt-0.5">Revenue distribution</p>
     </div>
     <canvas id="catChart" height="165"></canvas>
+  </div>
+</div>
+
+<!-- Payment Methods + Recent Activity -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-5">
+  <!-- Payment Methods (donut) -->
+  <div class="bg-[hsl(222,47%,10%)] border border-white/[0.06] rounded-2xl p-5">
+    <div class="mb-4">
+      <h2 class="font-semibold text-white text-sm">Payment Methods</h2>
+      <p class="text-slate-500 text-xs mt-0.5">Orders by payment type</p>
+    </div>
+    <?php if (empty($paymentBreakdown)): ?>
+      <p class="text-center text-slate-500 text-xs py-10">No order data yet</p>
+    <?php else: ?>
+      <canvas id="paymentChart" height="165"></canvas>
+    <?php endif; ?>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="xl:col-span-2 bg-[hsl(222,47%,10%)] border border-white/[0.06] rounded-2xl overflow-hidden">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
+      <h2 class="font-semibold text-white text-sm">Recent Activity</h2>
+      <a href="/admin/orders" class="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors">
+        View all <i class="fa-solid fa-arrow-right text-[9px]"></i>
+      </a>
+    </div>
+    <div class="divide-y divide-white/[0.04] max-h-[19rem] overflow-y-auto">
+      <?php if (empty($recentActivity)): ?>
+      <div class="px-5 py-8 text-center text-slate-500 text-sm">No activity yet.</div>
+      <?php else: foreach ($recentActivity as $act):
+        $sc = $statusColors[$act['status']] ?? 'gray';
+      ?>
+      <div class="flex items-center gap-3 px-5 py-3 hover:bg-white/[0.02] transition-colors">
+        <div class="w-8 h-8 rounded-lg bg-<?= $sc ?>-500/10 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-receipt text-<?= $sc ?>-400 text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-xs text-slate-300"><span class="font-semibold text-white"><?= clean($act['user_name']) ?></span>
+            placed order <span class="font-medium text-slate-200"><?= clean($act['order_number']) ?></span></p>
+          <p class="text-[11px] text-slate-500 mt-0.5"><?= date('d M, g:i A', strtotime($act['created_at'])) ?></p>
+        </div>
+        <span class="badge-status flex-shrink-0 bg-<?= $sc ?>-500/15 text-<?= $sc ?>-400 border border-<?= $sc ?>-500/20 capitalize"><?= clean($act['status']) ?></span>
+      </div>
+      <?php endforeach; endif; ?>
+    </div>
   </div>
 </div>
 
@@ -149,29 +253,10 @@ $statusColors  = ['pending'=>'yellow','processing'=>'blue','shipped'=>'purple','
   </div>
 </div>
 
-<!-- Quick Stats Footer Row -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-  <?php foreach([
-    ['Newsletter Subs',   $subscribers,         'fa-envelope',   'text-blue-400'],
-    ['Top Products',      count($topProducts),   'fa-trophy',     'text-amber-400'],
-    ['Low Stock Items',   count($lowStock),      'fa-triangle-exclamation','text-red-400'],
-    ['Avg Order Value',   $totalOrders>0?'₹'.number_format($totalRevenue/$totalOrders,0):'₹0','fa-chart-line','text-emerald-400'],
-  ] as [$l,$v,$i,$tc]): ?>
-  <div class="bg-[hsl(222,47%,10%)] border border-white/[0.06] rounded-xl p-4 flex items-center gap-3">
-    <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
-      <i class="fa-solid <?= $i ?> <?= $tc ?> text-sm"></i>
-    </div>
-    <div>
-      <p class="text-white font-bold text-sm"><?= is_numeric($v) ? number_format((int)$v) : $v ?></p>
-      <p class="text-slate-500 text-xs"><?= $l ?></p>
-    </div>
-  </div>
-  <?php endforeach; ?>
-</div>
-
 <script>
 const revenueData = <?= json_encode($revenueByMonth) ?>;
 const catData     = <?= json_encode($salesByCat) ?>;
+const paymentData = <?= json_encode($paymentBreakdown) ?>;
 
 Chart.defaults.color = '#64748b';
 
@@ -237,4 +322,37 @@ new Chart(document.getElementById('catChart'), {
     }
   }
 });
+
+if (paymentData.length) {
+  const pmLabels = {cod:'Cash on Delivery', razorpay:'Razorpay (Online)'};
+  new Chart(document.getElementById('paymentChart'), {
+    type:'doughnut',
+    data:{
+      labels: paymentData.map(p=>pmLabels[p.method]||p.method),
+      datasets:[{
+        data: paymentData.map(p=>parseInt(p.cnt)||0),
+        backgroundColor:['#3b82f6','#f59e0b','#8b5cf6','#22c55e'],
+        borderWidth:0, hoverOffset:6,
+      }]
+    },
+    options:{
+      responsive:true,
+      cutout:'68%',
+      plugins:{
+        legend:{
+          position:'bottom',
+          labels:{color:'#64748b',font:{size:10},boxWidth:8,padding:10,usePointStyle:true}
+        },
+        tooltip:{
+          backgroundColor:'hsl(222,47%,14%)',
+          borderColor:'rgba(255,255,255,.08)',
+          borderWidth:1,
+          titleColor:'#e2e8f0',
+          bodyColor:'#94a3b8',
+          callbacks:{ label: ctx=>' '+ctx.raw+' orders' }
+        }
+      }
+    }
+  });
+}
 </script>

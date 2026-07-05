@@ -1,5 +1,26 @@
 </main>
 
+<!-- Compare Bar -->
+<div x-data="{ get ids() { return $store.compare.ids } }"
+     x-show="ids.length > 0" x-cloak
+     x-transition
+     class="fixed bottom-0 inset-x-0 z-40 bg-slate-900 dark:bg-[hsl(222,47%,8%)] border-t border-white/10 shadow-2xl">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-2 text-white text-sm">
+      <i class="fa-solid fa-scale-balanced text-blue-400"></i>
+      <span class="font-semibold" x-text="ids.length"></span>
+      <span class="text-slate-400">product<span x-show="ids.length !== 1">s</span> selected to compare</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button @click="$store.compare.clear()" class="text-xs text-slate-400 hover:text-white px-3 py-2 transition-colors">Clear</button>
+      <a href="/compare" :class="ids.length < 2 ? 'pointer-events-none opacity-40' : ''"
+         class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5">
+        Compare Now <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="bg-slate-900 dark:bg-[hsl(222,47%,5%)] border-t border-slate-200 dark:border-white/6 mt-24">
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8">
