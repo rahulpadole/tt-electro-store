@@ -1,0 +1,630 @@
+You are a Senior Full-Stack PHP + MySQL + JavaScript + E-commerce Architect.
+
+Project: TT Electro Store
+Stack:
+- PHP (Custom MVC)
+- MySQL
+- TailwindCSS
+- Alpine.js
+- Fetch API
+- Delhivery API already integrated
+- Razorpay already integrated
+
+IMPORTANT:
+- Analyze the entire project before changing anything.
+- Do NOT break any existing functionality.
+- Reuse existing coding style.
+- Update database, backend APIs, frontend, admin panel and customer panel.
+- Everything must be production-ready.
+- Provide SQL migration files also.
+- No dummy code.
+- No placeholder functions.
+- Every feature must be fully working.
+
+========================================================
+FEATURE 1
+REAL TIME ADMIN NOTIFICATION SYSTEM
+========================================================
+
+Create a complete notification system.
+
+Database:
+
+admin_notifications
+
+Columns:
+
+id
+type
+title
+message
+reference_type
+reference_id
+icon
+is_read
+created_at
+
+Whenever these happen create notification automatically:
+
+New Order
+Order Paid
+COD Order
+Cancelled Order
+Return Request
+Refund Approved
+Refund Rejected
+Customer Registration
+New Review
+Low Stock
+Out Of Stock
+Coupon Created
+Offer Created
+Delhivery Pickup Failed
+Shipment Created
+Shipment Delivered
+
+Admin Top Bar
+
+Add bell icon.
+
+Bell should show:
+
+Unread count
+
+Dropdown
+
+Latest notifications
+
+Time ago
+
+Mark one as read
+
+Mark all as read
+
+View All
+
+Realtime
+
+Without refreshing.
+
+Use polling every 15 seconds.
+
+Unread count should instantly update.
+
+========================================================
+FEATURE 2
+CUSTOMER NOTIFICATION CENTER
+========================================================
+
+Create database
+
+user_notifications
+
+Columns
+
+id
+user_id
+title
+message
+type
+icon
+url
+is_read
+created_at
+
+Create Notification Center in customer account.
+
+Bell icon.
+
+Unread badge.
+
+Dropdown.
+
+Notification page.
+
+Mark as read.
+
+Delete notification.
+
+Automatically notify customer for:
+
+Order placed
+
+Payment successful
+
+COD confirmed
+
+Order confirmed
+
+Packed
+
+Pickup completed
+
+Shipped
+
+Out for delivery
+
+Delivered
+
+Return requested
+
+Return approved
+
+Return rejected
+
+Refund initiated
+
+Refund completed
+
+Coupon received
+
+Offer available
+
+Flash sale
+
+Wishlist item back in stock
+
+Price dropped
+
+Product available again
+
+Review approved
+
+Admin message
+
+System announcement
+
+========================================================
+FEATURE 3
+ADMIN SEND NOTIFICATIONS
+========================================================
+
+Admin Panel
+
+Notification Management
+
+Send notification
+
+To:
+
+Single user
+
+Multiple users
+
+All users
+
+Fields
+
+Title
+
+Message
+
+Image optional
+
+Button URL
+
+Notification Type
+
+Schedule later
+
+Send immediately
+
+========================================================
+FEATURE 4
+PRODUCT COMPARISON
+========================================================
+
+Create compare feature exactly like Amazon / Flipkart.
+
+Database
+
+compare_items
+
+id
+user_id
+session_id
+product_id
+created_at
+
+Guest users
+
+Session compare.
+
+Logged users
+
+Database compare.
+
+Features
+
+Compare button on every product card.
+
+Maximum 4 products.
+
+Sticky compare bar.
+
+Compare page.
+
+Compare
+
+Price
+
+Discount
+
+Brand
+
+Stock
+
+Specifications
+
+Ratings
+
+Availability
+
+Dimensions
+
+Warranty
+
+Everything in table format.
+
+Responsive.
+
+========================================================
+FEATURE 5
+RETURN SYSTEM
+========================================================
+
+Add One Day Return.
+
+Every delivered order can be returned within 24 hours.
+
+Database
+
+returns
+
+id
+order_id
+user_id
+reason
+description
+images
+status
+pickup_address
+refund_mode
+admin_note
+created_at
+updated_at
+
+Status
+
+Pending
+
+Approved
+
+Rejected
+
+Pickup Scheduled
+
+Picked
+
+Refund Initiated
+
+Refund Completed
+
+Customer side
+
+Return button
+
+Upload images
+
+Choose reason
+
+Description
+
+Track return
+
+Admin side
+
+Approve
+
+Reject
+
+Schedule pickup
+
+Refund
+
+History
+
+Automatically notify customer.
+
+========================================================
+FEATURE 6
+ORDER TIMELINE
+========================================================
+
+Customer should see complete timeline.
+
+Placed
+
+Confirmed
+
+Packed
+
+Pickup
+
+In Transit
+
+Out For Delivery
+
+Delivered
+
+Return
+
+Refund
+
+Fetch latest status automatically from Delhivery.
+
+========================================================
+FEATURE 7
+LIVE ORDER TRACKING
+========================================================
+
+Use Delhivery Tracking API.
+
+Do NOT store fake status.
+
+Automatically sync every 15 minutes using Cron.
+
+If webhook available use webhook.
+
+Store tracking history.
+
+Database
+
+tracking_history
+
+id
+
+order_id
+
+status
+
+location
+
+remarks
+
+created_at
+
+Customer tracking page.
+
+Timeline UI.
+
+========================================================
+FEATURE 8
+EMAIL NOTIFICATIONS
+========================================================
+
+Automatic emails
+
+Order placed
+
+Payment
+
+Shipment
+
+Delivered
+
+Return
+
+Refund
+
+Admin broadcast
+
+Coupon
+
+Offer
+
+Wishlist
+
+========================================================
+FEATURE 9
+SMS / WHATSAPP READY
+========================================================
+
+Create notification abstraction.
+
+Support providers
+
+Twilio
+
+MSG91
+
+AISensy
+
+Interakt
+
+Currently disabled by config.
+
+Easy future enable.
+
+========================================================
+FEATURE 10
+ADMIN DASHBOARD
+========================================================
+
+Dashboard widgets
+
+Today's Orders
+
+Today's Revenue
+
+Pending Returns
+
+Pending Shipments
+
+Unread Notifications
+
+Low Stock
+
+Recent Customers
+
+Latest Orders
+
+Realtime updates.
+
+========================================================
+FEATURE 11
+DATABASE MIGRATIONS
+========================================================
+
+Generate complete SQL file.
+
+Include
+
+CREATE TABLE
+
+Indexes
+
+Foreign Keys
+
+Default values
+
+Triggers if needed.
+
+Tables:
+
+admin_notifications
+
+user_notifications
+
+returns
+
+tracking_history
+
+compare_items
+
+notification_templates
+
+notification_logs
+
+========================================================
+FEATURE 12
+API
+========================================================
+
+Create REST APIs
+
+GET notifications
+
+POST send notification
+
+POST mark read
+
+POST mark all read
+
+POST compare
+
+DELETE compare
+
+POST return request
+
+GET return history
+
+GET tracking
+
+GET admin notifications
+
+========================================================
+FEATURE 13
+UI
+========================================================
+
+Modern ecommerce design.
+
+Animations.
+
+Responsive.
+
+Dark mode compatible.
+
+Accessible.
+
+No page reload.
+
+Toast notifications.
+
+Skeleton loading.
+
+========================================================
+FEATURE 14
+SECURITY
+========================================================
+
+CSRF protection.
+
+Role checking.
+
+SQL Injection protection.
+
+XSS protection.
+
+Rate limiting.
+
+Validation.
+
+========================================================
+FEATURE 15
+CRON JOBS
+========================================================
+
+Create cron scripts for
+
+Tracking sync
+
+Notification cleanup
+
+Offer expiry
+
+Coupon expiry
+
+Return expiry
+
+========================================================
+FEATURE 16
+DOCUMENTATION
+========================================================
+
+After implementation provide
+
+1. Folder tree
+
+2. Files modified
+
+3. Files added
+
+4. SQL migration
+
+5. Cron setup
+
+6. Environment variables
+
+7. API list
+
+8. Testing checklist
+
+========================================================
+FINAL REQUIREMENTS
+========================================================
+
+Everything must work exactly like a professional ecommerce platform such as Amazon, Flipkart, Meesho or Myntra.
+
+Do not leave TODOs.
+
+Do not use mock data.
+
+Do not remove existing features.
+
+Maintain backward compatibility.
+
+Generate all required PHP files, JavaScript, SQL migrations, APIs, Controllers, Models, Views, Routes and Admin pages.
+
+After coding, verify that every feature works together without breaking Delhivery integration, Razorpay integration, Orders, Coupons, Offers, Authentication or existing Admin Panel.
