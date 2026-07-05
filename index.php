@@ -168,6 +168,18 @@ if (str_starts_with($uri, '/api/')) {
         $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/orders/delhivery.php'; exit;
     }
 
+    // Returns (customer)
+    if ($apiPath === '/returns')                     { require __DIR__ . '/api/returns/index.php'; exit; }
+    if (preg_match('#^/returns/(\d+)$#', $apiPath, $m)) {
+        $_GET['id'] = $m[1]; require __DIR__ . '/api/returns/index.php'; exit;
+    }
+
+    // Admin — returns
+    if ($apiPath === '/admin/returns')               { require __DIR__ . '/api/admin/returns.php'; exit; }
+    if (preg_match('#^/admin/returns/(\d+)$#', $apiPath, $m)) {
+        $_GET['id'] = $m[1]; require __DIR__ . '/api/admin/returns.php'; exit;
+    }
+
     // Delhivery webhook (public, secured by shared secret internally)
     if ($apiPath === '/delhivery/webhook')      { require __DIR__ . '/api/delhivery-webhook.php'; exit; }
 
@@ -259,6 +271,7 @@ $adminRoutes = [
     '/admin/newsletter'   => 'newsletter',
     '/admin/notifications'=> 'notifications',
     '/admin/print3d'      => 'print3d',
+    '/admin/returns'      => 'returns',
 ];
 
 // ── Google OAuth routes (redirects, not API JSON) ──────────────────────────

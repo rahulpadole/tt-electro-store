@@ -30,6 +30,7 @@
       ],
       'Sales' => [
         ['/admin/orders',        'Orders',        'fa-solid fa-clipboard-list',   false],
+        ['/admin/returns',       'Returns',       'fa-solid fa-rotate-left',      false],
         ['/admin/offers',        'Offers',        'fa-solid fa-percent',          false],
       ],
       'Content' => [

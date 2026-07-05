@@ -125,6 +125,141 @@ function notifyOrderStatusChange(array $order, ?array $user = null, ?string $ext
 }
 
 /**
+ * Store a notification record in admin_notifications table.
+ * Fails silently — never breaks the calling flow.
+ */
+function createAdminNotification(string $type, string $title, string $message, array $data = []): void {
+    try {
+        Database::getConnection()->prepare(
+            'INSERT INTO admin_notifications (type, title, message, data, is_read, created_at)
+             VALUES (?, ?, ?, ?, 0, NOW())'
+        )->execute([$type, $title, $message, json_encode($data)]);
+    } catch (\Throwable $e) {
+        error_log('createAdminNotification failed: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Notify admin when a new order is placed (email + DB record).
+ */
+function notifyAdminNewOrder(array $order): void {
+    try {
+        $orderNo = $order['order_number'] ?? '?';
+        $total   = '₹' . number_format((float)($order['total'] ?? 0), 0);
+        $method  = strtoupper($order['payment_method'] ?? 'COD');
+        $addr    = is_array($order['shipping_address'] ?? null) ? $order['shipping_address'] : [];
+        $buyer   = $addr['name'] ?? ($order['user_name'] ?? 'Customer');
+
+        $title   = "New Order: #{$orderNo}";
+        $message = "{$buyer} placed order {$orderNo} for {$total} via {$method}.";
+
+        createAdminNotification('new_order', $title, $message, [
+            'order_id'       => $order['id']    ?? null,
+            'order_number'   => $orderNo,
+            'total'          => $order['total'] ?? 0,
+            'payment_method' => $order['payment_method'] ?? '',
+        ]);
+
+        $adminUrl = APP_URL . '/admin/orders';
+        $subject  = APP_NAME . ' — New Order #' . $orderNo;
+        $html     = <<<HTML
+        <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;padding:24px;background:#f8fafc">
+          <div style="background:#ffffff;border-radius:16px;padding:28px;border:1px solid #e2e8f0">
+            <h2 style="margin:0 0 4px;color:#0f172a;font-size:20px">🛍️ New Order Received!</h2>
+            <p style="margin:0 0 16px;color:#475569;font-size:14px">{$message}</p>
+            <div style="background:#f1f5f9;border-radius:10px;padding:14px 16px;margin-bottom:16px">
+              <p style="margin:0;color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:.5px">Order Number</p>
+              <p style="margin:2px 0 0;color:#0f172a;font-size:18px;font-weight:700">{$orderNo}</p>
+              <p style="margin:4px 0 0;color:#64748b;font-size:14px">{$total} &nbsp;·&nbsp; {$method}</p>
+            </div>
+            <a href="{$adminUrl}" style="display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600">View in Admin Panel</a>
+          </div>
+        </div>
+        HTML;
+
+        sendOrderEmail(ADMIN_EMAIL, 'Admin', $subject, $html);
+    } catch (\Throwable $e) {
+        error_log('notifyAdminNewOrder failed: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Notify admin when auto-Delhivery shipment creation fails.
+ */
+function notifyAdminShipmentFailed(array $order, string $error): void {
+    try {
+        $orderNo = $order['order_number'] ?? '?';
+        $title   = "Shipment Failed: #{$orderNo}";
+        $message = "Auto-Delhivery shipment for order #{$orderNo} failed. Error: {$error}";
+
+        createAdminNotification('shipment_failed', $title, $message, [
+            'order_id'     => $order['id'] ?? null,
+            'order_number' => $orderNo,
+            'error'        => $error,
+        ]);
+
+        $adminUrl = APP_URL . '/admin/orders';
+        $subject  = APP_NAME . ' — ⚠️ Shipment Failed #' . $orderNo;
+        $html     = <<<HTML
+        <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;padding:24px;background:#f8fafc">
+          <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid #fca5a5">
+            <h2 style="margin:0 0 8px;color:#dc2626;font-size:20px">⚠️ Shipment Creation Failed</h2>
+            <p style="color:#475569;font-size:14px;margin:0 0 12px">Auto-Delhivery shipment for order <strong>{$orderNo}</strong> could not be created.</p>
+            <div style="color:#dc2626;font-size:13px;background:#fef2f2;padding:12px 14px;border-radius:8px;margin-bottom:16px;border-left:3px solid #dc2626">{$error}</div>
+            <p style="color:#64748b;font-size:13px;margin:0 0 16px">Please create the shipment manually from the admin panel.</p>
+            <a href="{$adminUrl}" style="display:inline-block;background:#dc2626;color:#fff;text-decoration:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600">Go to Admin Orders</a>
+          </div>
+        </div>
+        HTML;
+
+        sendOrderEmail(ADMIN_EMAIL, 'Admin', $subject, $html);
+    } catch (\Throwable $e) {
+        error_log('notifyAdminShipmentFailed failed: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Notify admin when a customer submits a return request.
+ */
+function notifyAdminNewReturn(array $ret): void {
+    try {
+        $orderNo = $ret['order_number'] ?? '?';
+        $buyer   = $ret['user_name']   ?? 'Customer';
+        $reason  = $ret['reason']      ?? '?';
+
+        $title   = "Return Request: Order #{$orderNo}";
+        $message = "{$buyer} requested a return for order #{$orderNo}. Reason: {$reason}";
+
+        createAdminNotification('new_return', $title, $message, [
+            'return_id' => $ret['id']       ?? null,
+            'order_id'  => $ret['order_id'] ?? null,
+            'order_number' => $orderNo,
+        ]);
+
+        $adminUrl = APP_URL . '/admin/returns';
+        $subject  = APP_NAME . ' — Return Request for #' . $orderNo;
+        $html     = <<<HTML
+        <div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;padding:24px;background:#f8fafc">
+          <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid #e2e8f0">
+            <h2 style="margin:0 0 8px;color:#0f172a;font-size:20px">📦 Return Request Received</h2>
+            <p style="color:#475569;font-size:14px;margin:0 0 16px">{$message}</p>
+            <div style="background:#f1f5f9;border-radius:10px;padding:14px 16px;margin-bottom:16px">
+              <p style="margin:0;color:#64748b;font-size:12px;text-transform:uppercase">Order</p>
+              <p style="margin:2px 0 0;color:#0f172a;font-size:16px;font-weight:700">{$orderNo}</p>
+              <p style="margin:4px 0 0;color:#64748b;font-size:13px">Reason: {$reason}</p>
+            </div>
+            <a href="{$adminUrl}" style="display:inline-block;background:#7c3aed;color:#fff;text-decoration:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600">Review Return Request</a>
+          </div>
+        </div>
+        HTML;
+
+        sendOrderEmail(ADMIN_EMAIL, 'Admin', $subject, $html);
+    } catch (\Throwable $e) {
+        error_log('notifyAdminNewReturn failed: ' . $e->getMessage());
+    }
+}
+
+/**
  * Fire a Delhivery-specific shipment notification (AWB created or tracking
  * status changed), including the AWB number and expected delivery date.
  */

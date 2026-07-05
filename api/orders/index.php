@@ -1,4 +1,4 @@
-<?php 
+<?php
 declare(strict_types=1);
 require_once dirname(__DIR__, 2) . '/bootstrap.php';
 $om  = new OrderModel();
@@ -34,6 +34,11 @@ if (isPost()) {
     }
 
     (new CartModel())->clearCart($uid);
+
+    $user = getCurrentUser();
+    notifyOrderStatusChange($order, $user);
+    notifyAdminNewOrder($order);
+    triggerAutoShipment($order);
 
     jsonSuccess($order, 'Order placed', 201);
 }

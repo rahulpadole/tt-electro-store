@@ -8,3 +8,5 @@
 - [Shipping Constants](shipping-constants.md) — FREE_SHIPPING_ABOVE=999 and SHIPPING_CHARGE=60 defined in config/config.php; views must use these constants, not hardcoded values.
 - [Route Auth Guards](route-auth-guards.md) — /checkout and /wishlist require auth=true in routes array; OTP validation requires strlen===6 + ctype_digit, not strlen<4.
 - [Validator::in() strict type bug](validator-strict-in-check.md) — strict in_array() against a string-typed $allowed array silently rejects valid JSON-decoded ints; caused review submissions to fail.
+- [Post-Order Automation](post-order-automation.md) — Notifications + auto-shipment hooked into both order creation APIs; helpers/notifications.php and helpers/ShipmentService.php must be required in bootstrap.php (already done).
+- [Returns System](returns-system.md) — 24h return window enforced via status_timeline delivered entry; returns/return_images tables + ReturnModel + /api/returns + /api/admin/returns all in place.

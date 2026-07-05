@@ -18,7 +18,6 @@ if (!$razorpayOrderId || !$razorpayPaymentId || !$razorpaySignature) {
 $keySecret = getenv('RAZORPAY_KEY_SECRET');
 if (!$keySecret) jsonError('Payment gateway not configured', 500);
 
-// Verify signature: HMAC-SHA256 of "order_id|payment_id" using key secret
 $expectedSignature = hash_hmac('sha256', $razorpayOrderId . '|' . $razorpayPaymentId, $keySecret);
 
 if (!hash_equals($expectedSignature, $razorpaySignature)) {
@@ -26,15 +25,14 @@ if (!hash_equals($expectedSignature, $razorpaySignature)) {
     jsonError('Payment verification failed. Invalid signature.', 400);
 }
 
-// Signature is valid — now create the actual order
 $orderData = $d['order_data'] ?? [];
 if (empty($orderData)) jsonError('Order data missing', 422);
 
 $uid = getCurrentUserId();
-$orderData['user_id']            = $uid;
-$orderData['razorpay_order_id']  = $razorpayOrderId;
-$orderData['razorpay_payment_id']= $razorpayPaymentId;
-$orderData['payment_status']     = 'paid';
+$orderData['user_id']             = $uid;
+$orderData['razorpay_order_id']   = $razorpayOrderId;
+$orderData['razorpay_payment_id'] = $razorpayPaymentId;
+$orderData['payment_status']      = 'paid';
 
 $v = Validator::make($orderData)
     ->required('items')
@@ -55,5 +53,10 @@ try {
 }
 
 (new CartModel())->clearCart($uid);
+
+$user = getCurrentUser();
+notifyOrderStatusChange($order, $user, 'Payment confirmed via Razorpay. Order ID: ' . $razorpayPaymentId);
+notifyAdminNewOrder($order);
+triggerAutoShipment($order);
 
 jsonSuccess($order, 'Payment successful! Order placed.', 201);

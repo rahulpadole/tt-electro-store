@@ -1,0 +1,520 @@
+# TT Electro Store – Production E-commerce Upgrade
+
+You are a senior Full Stack PHP + MySQL + JavaScript developer.
+
+The project is already running in production on Hostinger.
+
+Your task is to upgrade the complete website into a professional e-commerce platform similar to Amazon, Flipkart and Robu.in while keeping the existing UI and APIs compatible.
+
+## IMPORTANT RULES
+
+* Do NOT break any existing functionality.
+* Do NOT remove existing APIs.
+* Maintain backward compatibility.
+* Use clean, modular, production-ready code.
+* Add proper error handling.
+* Add logging where necessary.
+* Follow MVC architecture already used in the project.
+* Keep all code optimized and secure.
+
+---
+
+# 1. Automatic Delhivery Shipment Creation
+
+Currently Delhivery is integrated.
+
+Improve it so that:
+
+* After Razorpay payment verification succeeds
+* OR after a COD order is confirmed (if COD is enabled)
+
+the system should automatically:
+
+1. Create shipment on Delhivery.
+2. Generate AWB/Waybill.
+3. Save all shipment information in database.
+
+Store:
+
+* shipment_id
+* waybill
+* courier_name
+* courier_status
+* tracking_url
+* pickup_location
+* expected_delivery_date
+* created_at
+
+If shipment creation fails:
+
+* Order should still be saved.
+* Admin should receive notification.
+* Error should be logged.
+* Shipment can be retried later.
+
+Never lose an order because shipment creation failed.
+
+---
+
+# 2. Real-Time Tracking
+
+Customers should NEVER leave our website.
+
+Create:
+
+/track-order
+
+Tracking page should fetch latest tracking data automatically from Delhivery API.
+
+Show:
+
+Order Confirmed
+
+↓
+
+Shipment Created
+
+↓
+
+Picked Up
+
+↓
+
+In Transit
+
+↓
+
+Reached Destination City
+
+↓
+
+Out For Delivery
+
+↓
+
+Delivered
+
+Include:
+
+Current status
+
+Current city
+
+Last scan
+
+Expected delivery date
+
+Courier name
+
+Tracking ID
+
+Refresh automatically.
+
+---
+
+# 3. Customer Order Timeline
+
+Inside My Orders page add a complete shipment timeline.
+
+Exactly like Amazon/Flipkart.
+
+Include:
+
+Order placed
+
+Payment successful
+
+Shipment created
+
+Packed
+
+Picked
+
+In transit
+
+Out for delivery
+
+Delivered
+
+Cancelled
+
+Returned
+
+Each stage should display:
+
+Date
+
+Time
+
+Location
+
+Status
+
+---
+
+# 4. Admin Notifications
+
+Whenever an order is placed:
+
+Admin should instantly receive notification.
+
+Implement:
+
+Admin Dashboard notification
+
+Database notification
+
+Email notification
+
+(Notification architecture should support SMS and WhatsApp later.)
+
+Notification should contain:
+
+Order ID
+
+Customer Name
+
+Amount
+
+Payment Status
+
+Delivery Address
+
+Items Ordered
+
+---
+
+# 5. Customer Notifications
+
+Automatically send:
+
+Order confirmation email
+
+Shipment created email
+
+Out for delivery email
+
+Delivered email
+
+Return approved email
+
+Emails should look modern and professional.
+
+---
+
+# 6. One-Day Return System
+
+Currently no return system exists.
+
+Implement complete return module.
+
+Rules:
+
+Customer can request return within 24 hours after delivery.
+
+After 24 hours:
+
+Return button disappears.
+
+Return reasons:
+
+Wrong product
+
+Damaged product
+
+Missing item
+
+Quality issue
+
+Other
+
+Customer can upload:
+
+Images
+
+Video (optional)
+
+Description
+
+Admin panel should have:
+
+Pending Returns
+
+Approved
+
+Rejected
+
+Completed
+
+After approval:
+
+Generate reverse pickup.
+
+Track reverse shipment.
+
+Update return status automatically.
+
+---
+
+# 7. Database Changes
+
+Create required tables.
+
+Examples:
+
+shipments
+
+shipment_tracking
+
+notifications
+
+returns
+
+return_images
+
+admin_notifications
+
+delivery_logs
+
+Do NOT duplicate existing data.
+
+Use proper foreign keys.
+
+---
+
+# 8. Order Details Improvements
+
+Each order should display:
+
+Invoice
+
+Tracking
+
+Shipment details
+
+Courier
+
+Expected delivery
+
+Payment details
+
+Coupon applied
+
+Discount
+
+GST
+
+Shipping
+
+Order history
+
+---
+
+# 9. Admin Dashboard Improvements
+
+Dashboard should display:
+
+Today's Orders
+
+Pending Shipments
+
+Orders Awaiting Pickup
+
+In Transit
+
+Delivered
+
+Cancelled
+
+Return Requests
+
+Revenue
+
+COD Orders
+
+Prepaid Orders
+
+Low Stock Products
+
+Recent Orders
+
+---
+
+# 10. Shipping Automation
+
+Automatically:
+
+Reserve stock
+
+Create shipment
+
+Generate AWB
+
+Update order status
+
+Notify customer
+
+Notify admin
+
+Generate invoice
+
+Everything should happen without manual intervention.
+
+---
+
+# 11. Tracking API
+
+Create reusable service.
+
+Example:
+
+ShipmentService
+
+TrackingService
+
+NotificationService
+
+ReturnService
+
+No duplicated code.
+
+---
+
+# 12. Customer Experience
+
+Improve order page like Amazon.
+
+Add:
+
+Download Invoice
+
+Track Package
+
+Need Help?
+
+Contact Support
+
+Request Return
+
+Order Timeline
+
+Courier Details
+
+Estimated Delivery
+
+Shipping Address
+
+Payment Method
+
+---
+
+# 13. Professional Return Policy
+
+Implement:
+
+One-Day Return
+
+Only after successful delivery.
+
+Digital products cannot be returned.
+
+Used products cannot be returned.
+
+Returned products should automatically restock after inspection.
+
+---
+
+# 14. Security
+
+Validate every API.
+
+Protect against:
+
+SQL Injection
+
+XSS
+
+CSRF
+
+Unauthorized tracking
+
+Unauthorized returns
+
+Rate limit tracking APIs.
+
+---
+
+# 15. Performance
+
+Cache tracking responses.
+
+Avoid unnecessary API calls.
+
+Background jobs where possible.
+
+Retry failed shipment creation.
+
+---
+
+# 16. Logging
+
+Log:
+
+Shipment creation
+
+Tracking updates
+
+Return requests
+
+Notification failures
+
+Payment failures
+
+Delhivery API failures
+
+---
+
+# 17. Production Ready
+
+After implementation:
+
+Review entire project.
+
+Remove duplicate code.
+
+Remove dead code.
+
+Fix warnings.
+
+Optimize queries.
+
+Optimize API responses.
+
+Ensure mobile responsiveness.
+
+Ensure no existing feature is broken.
+
+---
+
+# FINAL GOAL
+
+Transform TT Electro Store into a production-grade electronics e-commerce website with functionality comparable to Amazon, Flipkart and Robu.in, featuring:
+
+* Automatic Delhivery shipment creation
+* Real-time shipment tracking inside the website
+* Automatic admin notifications
+* Professional customer notifications
+* Complete one-day return management
+* Fully automated shipping workflow
+* Clean architecture
+* Secure APIs
+* Production-ready code
+* Excellent user experience
+
+At the end, provide:
+
+1. A list of all files created and modified.
+2. Database schema changes.
+3. Migration SQL.
+4. Environment variables required.
+5. Any manual setup steps needed before deployment.

@@ -132,4 +132,66 @@ addIndexIfMissing($db, 'products',     'products_is_active_idx',    '`is_active`
 addIndexIfMissing($db, 'wishlist',     'wishlist_user_id_idx',      '`user_id`');
 addIndexIfMissing($db, 'reviews',      'reviews_product_id_idx',    '`product_id`');
 
+// ── Admin Notifications table ─────────────────────────────────────────────
+$db->exec("CREATE TABLE IF NOT EXISTS `admin_notifications` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type`       VARCHAR(50)  NOT NULL,
+  `title`      VARCHAR(255) NOT NULL,
+  `message`    TEXT         NOT NULL,
+  `data`       JSON         DEFAULT NULL,
+  `is_read`    TINYINT(1)   NOT NULL DEFAULT 0,
+  `created_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `admin_notif_type_idx` (`type`),
+  INDEX `admin_notif_read_idx` (`is_read`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+echo "[migrate] ✓ Table `admin_notifications` ready\n";
+
+// ── Delivery Logs table ───────────────────────────────────────────────────
+$db->exec("CREATE TABLE IF NOT EXISTS `delivery_logs` (
+  `id`         INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `order_id`   INT UNSIGNED  DEFAULT NULL,
+  `event_type` VARCHAR(50)   NOT NULL,
+  `status`     VARCHAR(50)   NOT NULL,
+  `message`    TEXT          DEFAULT NULL,
+  `created_at` DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `delivery_logs_order_idx`  (`order_id`),
+  INDEX `delivery_logs_status_idx` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+echo "[migrate] ✓ Table `delivery_logs` ready\n";
+
+// ── Returns table ─────────────────────────────────────────────────────────
+$db->exec("CREATE TABLE IF NOT EXISTS `returns` (
+  `id`            INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `order_id`      INT UNSIGNED  NOT NULL,
+  `user_id`       INT UNSIGNED  NOT NULL,
+  `reason`        VARCHAR(255)  NOT NULL,
+  `description`   TEXT          DEFAULT NULL,
+  `status`        ENUM('pending','approved','rejected','picked_up','refunded') NOT NULL DEFAULT 'pending',
+  `admin_notes`   TEXT          DEFAULT NULL,
+  `refund_amount` DECIMAL(10,2) DEFAULT NULL,
+  `created_at`    DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`    DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `returns_order_idx`  (`order_id`),
+  INDEX `returns_user_idx`   (`user_id`),
+  INDEX `returns_status_idx` (`status`),
+  CONSTRAINT `fk_returns_order` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_returns_user`  FOREIGN KEY (`user_id`)  REFERENCES `users`(`id`)  ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+echo "[migrate] ✓ Table `returns` ready\n";
+
+// ── Return Images table ───────────────────────────────────────────────────
+$db->exec("CREATE TABLE IF NOT EXISTS `return_images` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `return_id`  INT UNSIGNED NOT NULL,
+  `image_url`  TEXT         NOT NULL,
+  `created_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `return_images_return_idx` (`return_id`),
+  CONSTRAINT `fk_return_images_return` FOREIGN KEY (`return_id`) REFERENCES `returns`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+echo "[migrate] ✓ Table `return_images` ready\n";
+
 echo "[migrate] ✅ All migrations complete.\n";
