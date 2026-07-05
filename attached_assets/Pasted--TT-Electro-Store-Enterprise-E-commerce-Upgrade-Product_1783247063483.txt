@@ -1,0 +1,811 @@
+# TT Electro Store – Enterprise E-commerce Upgrade (Production Ready)
+
+You are a Senior Full Stack Software Engineer (PHP 8+, MySQL, JavaScript, HTML, CSS, MVC Architecture).
+
+The project is already live on Hostinger and must remain fully functional.
+
+Your objective is to transform the entire website and admin panel into a modern enterprise-grade e-commerce platform comparable to Amazon, Flipkart, Robu.in, JioMart and Meesho while maintaining backward compatibility.
+
+## IMPORTANT RULES
+
+* Never break existing functionality.
+* Preserve all APIs unless replacing them with backward-compatible improvements.
+* Use clean MVC architecture.
+* Follow SOLID principles.
+* Remove duplicate code.
+* Optimize database queries.
+* Add proper validation and error handling.
+* Add audit logs where required.
+* Everything should be production-ready.
+
+---
+
+# 1. Real-Time Admin Notification System
+
+Create a professional notification system.
+
+Top Navbar should contain:
+
+🔔 Notification Bell
+
+Requirements:
+
+* Show unread notification badge.
+* Count updates in real time without page refresh.
+* Use polling or Server Sent Events (SSE) (preferred over WebSockets if easier for Hostinger).
+* Dropdown opens on click.
+* Mark individual notification as read.
+* Mark all as read.
+* Infinite scrolling or pagination.
+* Clicking notification should redirect to related page.
+
+Notifications include:
+
+* New Order
+* Payment Success
+* Payment Failed
+* COD Order
+* Shipment Created
+* Shipment Picked
+* Shipment Delivered
+* New Return Request
+* Return Approved
+* Return Rejected
+* Refund Completed
+* New User Registration
+* Product Out Of Stock
+* Low Stock Warning
+* Coupon Created
+* Flash Sale Started
+* New Contact Form
+* Support Ticket
+* Failed Delhivery Shipment
+
+Notification database should support future modules.
+
+---
+
+# 2. Customer Notification Center
+
+Every customer should have their own Notification Center.
+
+Create:
+
+My Account
+
+↓
+
+Notifications
+
+Customer receives notifications for:
+
+Order Placed
+
+Payment Success
+
+Payment Failed
+
+Shipment Created
+
+Packed
+
+Picked Up
+
+Out For Delivery
+
+Delivered
+
+Return Approved
+
+Return Rejected
+
+Refund Processed
+
+Refund Completed
+
+Coupon Received
+
+Flash Sale
+
+Offer
+
+Wishlist Product Back In Stock
+
+Price Drop
+
+Product Back In Stock
+
+Admin Announcement
+
+Festival Offers
+
+Loyalty Rewards
+
+Notifications should support:
+
+Unread count
+
+Mark all as read
+
+Delete notification
+
+Notification history
+
+Future push notification support
+
+---
+
+# 3. Admin Announcement System
+
+Create module where admin can send notifications.
+
+Admin can send:
+
+Entire Website
+
+Selected Users
+
+Premium Users
+
+All Customers
+
+Single Customer
+
+Users by Category
+
+Notification Types:
+
+Offer
+
+Deal
+
+Coupon
+
+New Arrival
+
+Maintenance
+
+Important Notice
+
+Shipping Delay
+
+Flash Sale
+
+Festival Sale
+
+Admin can choose:
+
+In-app
+
+Email
+
+Future SMS
+
+Future WhatsApp
+
+---
+
+# 4. Product Comparison
+
+Implement professional comparison system.
+
+Customer can compare products.
+
+Features:
+
+Compare button on every product.
+
+Maximum 4 products.
+
+Comparison page.
+
+Compare:
+
+Image
+
+Price
+
+Discount
+
+Stock
+
+Brand
+
+Category
+
+Specifications
+
+Ratings
+
+Reviews
+
+Warranty
+
+Availability
+
+Weight
+
+Dimensions
+
+Power
+
+Voltage
+
+Package Contents
+
+Add To Cart
+
+Highlight differences automatically.
+
+Works on desktop and mobile.
+
+---
+
+# 5. Wishlist Improvements
+
+Persistent wishlist.
+
+Works without losing data.
+
+Move to cart.
+
+Move back to wishlist.
+
+Notify customer when:
+
+Price drops.
+
+Back in stock.
+
+Offer available.
+
+---
+
+# 6. Professional Admin Dashboard
+
+Completely redesign admin panel.
+
+Modern layout.
+
+Responsive.
+
+Dark Mode.
+
+Professional sidebar.
+
+Dashboard Cards:
+
+Today's Revenue
+
+Monthly Revenue
+
+Orders Today
+
+Pending Orders
+
+Delivered
+
+Cancelled
+
+Returns
+
+Refunds
+
+Users
+
+Products
+
+Coupons
+
+Offers
+
+Active Visitors (future ready)
+
+Charts:
+
+Sales
+
+Revenue
+
+Orders
+
+Categories
+
+Products
+
+Payment Methods
+
+Recent Activities.
+
+---
+
+# 7. Professional Admin Modules
+
+Dashboard
+
+Products
+
+Categories
+
+Brands
+
+Orders
+
+Customers
+
+Returns
+
+Coupons
+
+Offers
+
+Inventory
+
+Notifications
+
+Reports
+
+Invoices
+
+Reviews
+
+Shipping
+
+Settings
+
+Profile
+
+Activity Logs
+
+Support
+
+Analytics
+
+System Logs
+
+Role Management (future ready)
+
+---
+
+# 8. Order Management
+
+Professional order page.
+
+Filters:
+
+Pending
+
+Paid
+
+Packed
+
+Shipped
+
+Delivered
+
+Cancelled
+
+Returned
+
+Refunded
+
+Search by:
+
+Order ID
+
+Customer
+
+Phone
+
+Email
+
+Tracking Number
+
+Date
+
+Export:
+
+CSV
+
+Excel
+
+PDF
+
+Bulk Actions:
+
+Ship
+
+Cancel
+
+Print Invoice
+
+Print Shipping Label
+
+Assign Courier
+
+---
+
+# 9. Inventory Management
+
+Track:
+
+Current Stock
+
+Reserved Stock
+
+Incoming Stock
+
+Sold Quantity
+
+Low Stock
+
+Out Of Stock
+
+Stock History
+
+Automatic low stock notification.
+
+---
+
+# 10. Customer Management
+
+Customer profile.
+
+Orders.
+
+Returns.
+
+Addresses.
+
+Wishlist.
+
+Coupons Used.
+
+Total Spending.
+
+Reward Points (future).
+
+Account Status.
+
+Ban / Unban.
+
+---
+
+# 11. Reports
+
+Generate:
+
+Sales Report
+
+Revenue Report
+
+Tax Report
+
+GST Report
+
+Inventory Report
+
+Customer Report
+
+Coupon Report
+
+Shipping Report
+
+Returns Report
+
+Export:
+
+CSV
+
+Excel
+
+PDF
+
+---
+
+# 12. Search Improvements
+
+Admin search.
+
+Global search.
+
+Instant suggestions.
+
+Search:
+
+Products
+
+Orders
+
+Users
+
+Coupons
+
+Offers
+
+Returns
+
+---
+
+# 13. Review System
+
+Customers can:
+
+Rate products.
+
+Upload images.
+
+Edit review.
+
+Delete review.
+
+Admin:
+
+Approve
+
+Reject
+
+Pin review
+
+Report review
+
+---
+
+# 14. Coupons
+
+Improve coupon system.
+
+Usage limit.
+
+Per-user limit.
+
+Expiry.
+
+Category-wise coupon.
+
+Brand-wise coupon.
+
+Product-wise coupon.
+
+Automatic coupon.
+
+Birthday coupon (future).
+
+Referral coupon (future).
+
+---
+
+# 15. Offers
+
+Offer Scheduler.
+
+Flash Sale.
+
+Countdown timer.
+
+Category Offers.
+
+Product Offers.
+
+Buy X Get Y.
+
+Combo Offers.
+
+---
+
+# 16. Audit Logs
+
+Track every admin action.
+
+Login
+
+Logout
+
+Product Edited
+
+Order Cancelled
+
+Coupon Created
+
+Offer Updated
+
+Notification Sent
+
+Return Approved
+
+Delete Action
+
+IP Address
+
+Browser
+
+Timestamp
+
+---
+
+# 17. Settings Module
+
+Website Settings
+
+Logo
+
+Favicon
+
+SEO
+
+Shipping
+
+Tax
+
+Currency
+
+Email
+
+SMS
+
+WhatsApp
+
+Delhivery
+
+Razorpay
+
+Google Login
+
+Social Links
+
+Maintenance Mode
+
+---
+
+# 18. Complete SQL
+
+Generate complete SQL migration.
+
+Include:
+
+CREATE TABLE
+
+ALTER TABLE
+
+INDEXES
+
+FOREIGN KEYS
+
+DEFAULT VALUES
+
+UNIQUE CONSTRAINTS
+
+Views if required
+
+Triggers if useful
+
+Seed Data
+
+Everything should work on existing production database without data loss.
+
+---
+
+# 19. Database Tables
+
+Ensure professional schema including (extend existing if present):
+
+users
+
+products
+
+product_images
+
+product_comparison
+
+comparison_items
+
+wishlist
+
+wishlist_items
+
+orders
+
+order_items
+
+payments
+
+payment_logs
+
+shipments
+
+shipment_tracking
+
+returns
+
+return_items
+
+notifications
+
+admin_notifications
+
+notification_reads
+
+reviews
+
+review_images
+
+offers
+
+coupons
+
+coupon_usage
+
+inventory_logs
+
+activity_logs
+
+audit_logs
+
+system_logs
+
+settings
+
+support_tickets
+
+customer_addresses
+
+invoice_logs
+
+search_history
+
+analytics_events
+
+---
+
+# 20. Performance
+
+Optimize everything.
+
+Indexes.
+
+Prepared statements.
+
+Lazy loading.
+
+Pagination.
+
+Caching.
+
+Optimized queries.
+
+No N+1 queries.
+
+---
+
+# 21. Security
+
+CSRF protection.
+
+XSS protection.
+
+SQL Injection prevention.
+
+Rate limiting.
+
+Permission middleware.
+
+Role validation.
+
+Input sanitization.
+
+---
+
+# 22. Deliverables
+
+After implementation provide:
+
+1. Complete list of modified files.
+2. Complete list of newly created files.
+3. Full SQL migration script.
+4. Database ER relationship summary.
+5. Required environment variables.
+6. Deployment checklist.
+7. Testing checklist.
+8. Rollback instructions.
+
+The final result should feel like a premium, enterprise-grade electronics marketplace with a polished admin experience, real-time notifications, product comparison, complete customer engagement system, scalable architecture, and production-quality code suitable for future growth.
